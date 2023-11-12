@@ -1,9 +1,17 @@
+import app from 'firebase/app';
+import firebase from 'firebase';
+
 const firebaseConfig = {
-    apiKey: "AIzaSyAuoxJkrJTwzA8AP10Hw6sdmcUZw2UAMwA",
-    authDomain: "proyecto3-6fbda.firebaseapp.com",
-    projectId: "proyecto3-6fbda",
-    storageBucket: "proyecto3-6fbda.appspot.com",
-    messagingSenderId: "903904162562",
-    appId: "1:903904162562:web:8dbc73939ee09f1851481b"
-  };
-  
+    apiKey: "AIzaSyD5b2OiZa-u1uJNkUkkxOp8UwaFHp5DiPA",
+    authDomain: "prog3-993f2.firebaseapp.com",
+    projectId: "prog3-993f2",
+    storageBucket: "prog3-993f2.appspot.com",
+    messagingSenderId: "415169779542",
+    appId: "1:415169779542:web:ed704a4b964c17980ae8f7"
+};
+
+app.initializeApp(firebaseConfig);
+
+export const auth = firebase.auth();
+export const storage = app.storage();
+export const db = app.firestore();
