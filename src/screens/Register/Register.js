@@ -1,6 +1,6 @@
 import react, { Component } from 'react';
- import { db, auth } from '../../firebase/config';
- import {TextInput, TouchableOpacity, View, Text, StyleSheet} from 'react-native';
+import { db, auth } from '../../firebase/config';
+import {Image, TextInput, TouchableOpacity, View, Text, StyleSheet} from 'react-native';
 
  class Register extends Component {
      constructor(){
@@ -53,7 +53,12 @@ import react, { Component } from 'react';
      render(){
          return(
              <View style={styles.formContainer}>
-                 <Text>Register</Text>
+             <View style={styles.right}>
+                <Image
+                    style={styles.image}
+                    source = {require('/assets/logo.png')}
+                    resizeMode= "center"
+                />
                  <TextInput
                      style={styles.input}
                      onChangeText={(text)=>this.setState({email: text})}
@@ -83,15 +88,22 @@ import react, { Component } from 'react';
                     <Text>Ya tengo cuenta. Ir al login</Text>
                  </TouchableOpacity>
              </View>
+             </View>
+
+         
          )
      }
  }
 
  const styles = StyleSheet.create({
-     formContainer:{
+      formContainer:{
          paddingHorizontal:10,
          marginTop: 20,
      },
+     right:{
+        flex: 1,
+        justifyContent: 'center',
+    },
      input:{
          height:20,
          paddingVertical:15,
@@ -103,19 +115,20 @@ import react, { Component } from 'react';
          marginVertical:10,
      },
      button:{
-         backgroundColor:'#28a745',
-         paddingHorizontal: 10,
-         paddingVertical: 6,
-         textAlign: 'center',
-         borderRadius:4, 
-         borderWidth:1,
-         borderStyle: 'solid',
-         borderColor: '#28a745'
+        height:40,
+        width:"auto",
+        backgroundColor:'darkred',
+        borderRadius:8, 
      },
      textButton:{
-         color: '#fff'
-     }
-
+         color: 'white'
+     },
+     image: {
+        height: 80,
+        width: "100%",
+    
+    },
+ 
  })
 
 

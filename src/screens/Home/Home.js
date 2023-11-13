@@ -1,5 +1,5 @@
 import react, { Component } from 'react';
- import {TextInput, TouchableOpacity, View, Text, StyleSheet, FlatList} from 'react-native';
+ import {TextInput, TouchableOpacity, View, Text, StyleSheet, FlatList, Image} from 'react-native';
  import { db, auth } from '../../firebase/config';
  import PostForm from '../PostForm/PostForm';
  import Post from '../../components/Post/Post';
@@ -43,13 +43,28 @@ import react, { Component } from 'react';
      render(){
          console.log(this.state);
          return(
+
              <View>
-                 <Text>HOME</Text>
+                <Image
+                    style={styles.image}
+                    source = {require('/assets/logo.png')}
+                    resizeMode= "center"
+                />
+                 <Text style={styles.screenTitle} >HOME</Text>
                  <TouchableOpacity onPress={()=>this.logout()}>
                      <Text>Logout</Text>
                  </TouchableOpacity>
+            {/* Botón para ir a la pantalla de registro */}
+                <TouchableOpacity
+                    style={styles.button}
+                    onPress={() => this.props.navigation.navigate('Register')}>
 
-                 <Text>Crear nuevo post</Text>
+                     <Text style={styles.buttonText}>Ir a Registro</Text>
+                 </TouchableOpacity>
+
+            {/* Botón para ir a la pantalla de log in */}
+
+                 <Text style={styles.title}>Crear nuevo post</Text>
                  <PostForm />
 
                  <Text>Lista de posteos creados</Text>
@@ -65,6 +80,37 @@ import react, { Component } from 'react';
      }
  }
 
+ const styles = StyleSheet.create({
+
+    //CONTENEDOR GENERAL
+    screenTitle:{
+        fontSize: 30,
+        fontWeight: 'bold',
+        marginLeft: 20,
+        marginVertical: 10
+    },
+    title:{
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginLeft: 20,
+        marginVertical: 10
+    },
+
+      button: {
+        marginTop: 20,
+        padding: 10,
+        backgroundColor: 'darkred',
+        borderRadius: 4,
+        width:"fit-content",
+      },
+
+      buttonText: {
+        color: 'white',
+        fontWeight: 'bold',
+      },
+
+    
+ })
 
 
  export default Home;

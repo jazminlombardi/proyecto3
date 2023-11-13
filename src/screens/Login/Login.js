@@ -52,7 +52,7 @@ import react, { Component } from 'react';
                  <TouchableOpacity style={styles.button} onPress={()=>this.login(this.state.email, this.state.password)}>
                      <Text style={styles.textButton}>Ingresar</Text>    
                  </TouchableOpacity>
-                 <TouchableOpacity onPress={ () => this.props.navigation.navigate('Registro')}>
+                 <TouchableOpacity onPress={ () => this.props.navigation.navigate('Register')}>
                     <Text>No tengo cuenta. Registrarme.</Text>
                  </TouchableOpacity>
              </View>
@@ -76,14 +76,11 @@ import react, { Component } from 'react';
          marginVertical:10,
      },
      button:{
-         backgroundColor:'blue',
+         backgroundColor:'darkred',
          paddingHorizontal: 10,
          paddingVertical: 6,
          textAlign: 'center',
          borderRadius:4, 
-         borderWidth:1,
-         borderStyle: 'solid',
-         borderColor: '#28a745'
      },
      textButton:{
          color: '#fff'
