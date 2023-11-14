@@ -6,7 +6,8 @@ import { StyleSheet, Text, View } from 'react-native';
  import Login from './src/screens/Login/Login';
  import Home from './src/screens/Home/Home';
  import MiPerfil from './src/screens/MiPerfil/MiPerfil';
- import Filtrado from './src/screens/Filtrado/Filtrado'
+ import Filtrado from './src/screens/Filtrado/Filtrado';
+ import SearchResults from './src/screens/SearchResults/SearchResults';
  
  const Stack = createNativeStackNavigator();
 
@@ -20,11 +21,12 @@ import { StyleSheet, Text, View } from 'react-native';
 
     <NavigationContainer style={styles.container}>
       <Stack.Navigator>
-      <Stack.Screen name='Home' component={Home} options={ { headerShown: false } }/>
+        <Stack.Screen name='Home' component={Home} options={ { headerShown: false } }/>
         <Stack.Screen name='Register' component={Register} options={ { headerShown: false } }/>
         <Stack.Screen name='Login' component={Login} options={ { headerShown: false } }/>
         <Stack.Screen name='Mi perfil' component={MiPerfil} options={ { headerShown: false } }/>
         <Stack.Screen name='Filtrado' component={Filtrado} options={ { headerShown: false } }/>
+        <Stack.Screen name='SearchResults' component={SearchResults} options={ { headerShown: false } }/>
       </Stack.Navigator>
     </NavigationContainer>
 
