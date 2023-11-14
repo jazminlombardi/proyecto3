@@ -47,6 +47,10 @@ const styles = StyleSheet.create({
     formContainer:{
         paddingHorizontal:10,
         marginTop: 20,
+        backgroundColor:"white",
+        margin:"10px",
+        padding:"20px",
+        borderRadius:"10px",
     },
     input:{
         height:20,
@@ -59,17 +63,15 @@ const styles = StyleSheet.create({
         marginVertical:10,
     },
     button:{
-        backgroundColor:'#28a745',
+        backgroundColor:'darkred',
         paddingHorizontal: 10,
         paddingVertical: 6,
         textAlign: 'center',
         borderRadius:4, 
-        borderWidth:1,
-        borderStyle: 'solid',
-        borderColor: '#28a745'
+   
     },
     textButton:{
-        color: '#fff'
+        color: 'white'
     }
 
 })

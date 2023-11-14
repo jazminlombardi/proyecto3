@@ -108,6 +108,9 @@ import react, { Component } from 'react';
         color: 'white',
         fontWeight: 'bold',
       },
+      image:{
+            height: 80,
+      }
 
     
  })

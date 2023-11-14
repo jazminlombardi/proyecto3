@@ -1,6 +1,6 @@
 import react, { Component } from 'react';
  import { auth } from '../../firebase/config';
- import {TextInput, TouchableOpacity, View, Text, StyleSheet} from 'react-native';
+ import {TextInput, TouchableOpacity, View, Text, StyleSheet, Image} from 'react-native';
 
  class Login extends Component {
      constructor(){
@@ -33,6 +33,11 @@ import react, { Component } from 'react';
      render(){
          return(
              <View style={styles.formContainer}>
+                <Image
+                    style={styles.image}
+                    source = {require('/assets/logo.png')}
+                    resizeMode= "center"
+                />
                  <Text>Login</Text>
                  <TextInput
                      style={styles.input}
@@ -84,7 +89,12 @@ import react, { Component } from 'react';
      },
      textButton:{
          color: '#fff'
-     }
+     },
+     image: {
+        height: 80,
+        width: "100%",
+    
+    },
 
  })
 
