@@ -14,22 +14,23 @@ import React, { Component } from 'react';
          }
      }
 
-     componentDidMount(){
-         //Chequear apenas carga si el post está o no likeado
-         if(this.props.dataPost.datos.likes.includes(auth.currentUser.owner)){
-             this.setState({
-                 like:true
-             })
-         }
-
-     }
+     componentDidMount() {
+        //Chequear si el usuario está autenticado y luego ver si le gusta el post
+        const user = auth.currentUser;
+        if (user && this.props.dataPost.datos.likes.includes(user.email)) {
+            this.setState({
+                like: true
+            });
+        }
+    }
+    
 
      //Necesitamos en FB que cada Post tenga una propiedad con un array de emails
 
      likear(){
          //Agrega un email en la propiedad like del post.
          db.collection('posts').doc(this.props.dataPost.id).update({
-             likes:firebase.firestore.FieldValue.arrayUnion(auth.currentUser.owner)
+             likes:firebase.firestore.FieldValue.arrayUnion(auth.currentUser.email)
          })
          .then( res => this.setState({
              like: true,
@@ -43,7 +44,7 @@ import React, { Component } from 'react';
      unlike(){
          //Quita un email en la propiedad like del post.
          db.collection('posts').doc(this.props.dataPost.id).update({
-             likes:firebase.firestore.FieldValue.arrayRemove(auth.currentUser.owner)
+             likes:firebase.firestore.FieldValue.arrayRemove(auth.currentUser.email)
          })
          .then( res => this.setState({
              like: false,
@@ -59,7 +60,7 @@ import React, { Component } from 'react';
          console.log(this.props)
          return (
              <View>
-                 <Text>{ this.props.dataPost.datos.owner }</Text>
+                 <Text>{ this.props.dataPost.datos.email }</Text>
                  <Text>{ this.props.dataPost.datos.textoPost }</Text>
                  <Text>Cantidad de Likes:{ this.state.cantidadDeLikes }</Text>
                  {
