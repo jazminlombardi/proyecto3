@@ -20,7 +20,7 @@ import { TouchableWithoutFeedback } from 'react-native-web';
              console.log(user)
              if( user ){
                  //Redirigir al usuario a la home del sitio.
-                 this.props.navigation.navigate('Home')
+                 this.props.navigation.navigate('Menu')
              }
 
          } )

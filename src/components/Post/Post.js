@@ -76,11 +76,6 @@ import React, { Component } from 'react';
                          </TouchableOpacity>
                  }
 
-
-
-
-
-
              </View>
 
          )

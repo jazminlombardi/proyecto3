@@ -43,6 +43,7 @@
      render(){
          console.log(this.state);
          return(
+            
 
              <View style = {styles.home}>
                 <Image
@@ -67,13 +68,11 @@
                  <Text style={styles.title}>Crear nuevo post</Text>
                  <PostForm />
 
-                 <Text>Lista de posteos creados</Text>
-
                  <FlatList
-                     data={this.state.posts}
-                     keyExtractor={ unPost => unPost.id }
-                     renderItem={ ({item}) => <Post dataPost = {item} />  }
-                 />
+                    data={this.state.posts}
+                    keyExtractor={ unPost => unPost.id }
+                    renderItem={ ({item}) => <Post dataPost = {item} />  }
+                />
 
              </View>
          )

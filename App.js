@@ -5,10 +5,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
  import Register from './src/screens/Register/Register';
  import Login from './src/screens/Login/Login';
- import Home from './src/screens/Home/Home';
- import MiPerfil from './src/screens/MiPerfil/MiPerfil';
- import Filtrado from './src/screens/Filtrado/Filtrado';
- import SearchResults from './src/screens/SearchResults/SearchResults';
+ import Menu from './src/components/Menu/Menu';
+
+
  
  const Stack = createNativeStackNavigator();
  const Tab = createBottomTabNavigator();
@@ -23,14 +22,11 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
    return (
 
     <NavigationContainer style={styles.container}>
-      <Tab.Navigator>
-        <Tab.Screen name='Home' component={Home} /* options={ { headerShown: false } } *//>
-        <Tab.Screen name='Register' component={Register} /* options={ { headerShown: false } } *//>
-        <Tab.Screen name='Login' component={Login} /* options={ { headerShown: false } } *//>
-        <Tab.Screen name='Mi perfil' component={MiPerfil} /* options={ { headerShown: false } } *//>
-        <Tab.Screen name='Filtrado' component={Filtrado} /* options={ { headerShown: false } } *//>
-        <Tab.Screen name='SearchResults' component={SearchResults} /* options={ { headerShown: false } } *//>
-      </Tab.Navigator>
+      <Stack.Navigator>
+        <Stack.Screen name='Register' component={Register} options={{ headerShown: false}}/>
+        <Stack.Screen name='Login' component={Login} options={{ headerShown: false}}/>
+        <Stack.Screen name='Menu' component={Menu} options={{ headerShown: false}}/>
+      </Stack.Navigator>
     </NavigationContainer>
 
    );

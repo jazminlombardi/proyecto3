@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import {TextInput, TouchableOpacity, View, Text, StyleSheet, Image} from 'react-native';
-import { auth } from '../../firebase/config';
+import {TextInput, TouchableOpacity, View, Text, StyleSheet, Image, FlatList} from 'react-native';
+import { auth, db } from '../../firebase/config';
+import Post from '../../components/Post/Post';
+
 
 class MiPerfil extends Component {
     constructor(){
@@ -8,6 +10,26 @@ class MiPerfil extends Component {
         this.state={
       
         }
+    }
+    componentDidMount(){
+        //Traer los datos de Firebase y cargarlos en el estado.
+        db.collection('posts').onSnapshot(
+            listaPosts => {
+                let postsAMostrar = [];
+
+                listaPosts.forEach(unPost => {
+                    postsAMostrar.push({
+                        id:unPost.id,
+                        datos: unPost.data()            
+                    })
+                })
+
+                this.setState({
+                    posts:postsAMostrar
+                })
+            }
+        )
+
     }
 
     logout(){
@@ -33,6 +55,13 @@ class MiPerfil extends Component {
                 <TouchableOpacity onPressOut={()=>this.borrar()}>
                     <Text>BORRAR POSTEO</Text>
                 </TouchableOpacity>
+                <Text>Lista de posteos creados</Text>
+
+                <FlatList
+                    data={this.state.posts}
+                    keyExtractor={ unPost => unPost.id }
+                    renderItem={ ({item}) => <Post dataPost = {item} />  }
+                />
             </View>
         )
     }
