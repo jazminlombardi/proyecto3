@@ -1,6 +1,7 @@
 import react, { Component } from 'react';
 import { db, auth } from '../../firebase/config';
 import {Image, TextInput, TouchableOpacity, View, Text, StyleSheet} from 'react-native';
+import { TouchableWithoutFeedback } from 'react-native-web';
 
  class Register extends Component {
      constructor(){
@@ -52,28 +53,29 @@ import {Image, TextInput, TouchableOpacity, View, Text, StyleSheet} from 'react-
 
      render(){
          return(
-             <View style={styles.formContainer}>
+        <View style={styles.formContainer}>
              <View style={styles.right}>
+                <View style={styles.primerSeccion}>
                 <Image
                     style={styles.image}
                     source = {require('/assets/logo.png')}
                     resizeMode= "center"
                 />
-                 <TextInput
+                <TextInput
                      style={styles.input}
                      onChangeText={(text)=>this.setState({email: text})}
                      placeholder='email'
                      keyboardType='email-address'
                      value={this.state.email}
                      />
-                 <TextInput
+                <TextInput
                      style={styles.input}
                      onChangeText={(text)=>this.setState({userName: text})}
                      placeholder='user name'
                      keyboardType='default'
                      value={this.state.userName}
                      />
-                 <TextInput
+                <TextInput
                      style={styles.input}
                      onChangeText={(text)=>this.setState({password: text})}
                      placeholder='password'
@@ -81,29 +83,60 @@ import {Image, TextInput, TouchableOpacity, View, Text, StyleSheet} from 'react-
                      secureTextEntry={true}
                      value={this.state.password}
                  />
-                 <TouchableOpacity style={styles.button} onPress={()=>this.register(this.state.email, this.state.password, this.state.userName)}>
-                     <Text style={styles.textButton}>Registrarse</Text>    
-                 </TouchableOpacity>
-                 <TouchableOpacity onPress={ () => this.props.navigation.navigate('Login')}>
-                    <Text>Ya tengo cuenta. Ir al login</Text>
-                 </TouchableOpacity>
-             </View>
-             </View>
+                
+                <TouchableOpacity style={styles.button} onPress={()=>this.register(this.state.email, this.state.password, this.state.userName)}>
+                    <Text style={styles.textButton}>Register</Text>    
+                </TouchableOpacity>
+            </View>
+            
+            <View style={styles.segundaSeccion}>
+                <Text>Already have an account?</Text>
+                <TouchableOpacity onPress={ () => this.props.navigation.navigate('Login')}>
+                   <Text style={styles.loginText}>Login</Text>
+                </TouchableOpacity>
+            </View>
+            
+        </View>                    
+        
+        <Text style= {styles.footerText}> Cupito - Bordelois - Lombardi</Text>
+        </View>
+        
+        )}}
 
-         
-         )
-     }
- }
 
  const styles = StyleSheet.create({
-      formContainer:{
+    formContainer:{
          paddingHorizontal:10,
          marginTop: 20,
+         backgroundcolor: 'white'
      },
-     right:{
+    right:{
         flex: 1,
         justifyContent: 'center',
     },
+    firstBox:{
+        backgroundColor: 'white',
+        borderRadius: 6,
+        padding: 70,
+        marginVertical: 20,
+        marginHorizontal: 20,
+        borderWidth: 1,
+        borderColor: 'white',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    
+    secondBox:{
+        borderRadius: 6,
+        padding: 15,
+        marginVertical: 5,
+        marginHorizontal: 20,
+        borderWidth: 1,
+        backgroundColor: 'white',
+        borderColor: 'white',
+        alignItems: 'center', 
+    },
+
      input:{
          height:20,
          paddingVertical:15,
@@ -126,9 +159,13 @@ import {Image, TextInput, TouchableOpacity, View, Text, StyleSheet} from 'react-
      image: {
         height: 80,
         width: "100%",
-    
     },
- 
+    footerText: {
+        textAlign: 'center',
+        fontSize: 13,
+        color: 'black'
+    },
+
  })
 
 

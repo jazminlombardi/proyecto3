@@ -44,7 +44,7 @@
          console.log(this.state);
          return(
 
-             <View>
+             <View style = {styles.home}>
                 <Image
                     style={styles.image}
                     source = {require('/assets/logo.png')}
@@ -83,6 +83,9 @@
  const styles = StyleSheet.create({
 
     //CONTENEDOR GENERAL
+    home:{
+        backgroundColor: 'white'
+    },
     screenTitle:{
         fontSize: 30,
         fontWeight: 'bold',
