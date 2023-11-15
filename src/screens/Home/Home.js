@@ -84,8 +84,9 @@
 
     //CONTENEDOR GENERAL
     home:{
-        backgroundColor: 'white'
+        backgroundColor:"f1f1f1"
     },
+
     screenTitle:{
         fontSize: 30,
         fontWeight: 'bold',

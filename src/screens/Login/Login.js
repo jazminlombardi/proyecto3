@@ -88,7 +88,7 @@ import react, { Component } from 'react';
          borderRadius:4, 
      },
      textButton:{
-         color: '#fff'
+         color: 'white'
      },
      image: {
         height: 80,

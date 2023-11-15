@@ -114,7 +114,7 @@ import React, { Component } from 'react';
          borderColor: 'orange'
      },
      textButton:{
-         color: '#fff'
+         color: 'white'
      }
  })
 
