@@ -16,7 +16,7 @@ import React, { Component } from 'react';
 
      componentDidMount(){
          //Chequear apenas carga si el post está o no likeado
-         if(this.props.dataPost.datos.likes.includes(auth.currentUser.email)){
+         if(this.props.dataPost.datos.likes.includes(auth.currentUser.owner)){
              this.setState({
                  like:true
              })
@@ -29,7 +29,7 @@ import React, { Component } from 'react';
      likear(){
          //Agrega un email en la propiedad like del post.
          db.collection('posts').doc(this.props.dataPost.id).update({
-             likes:firebase.firestore.FieldValue.arrayUnion(auth.currentUser.email)
+             likes:firebase.firestore.FieldValue.arrayUnion(auth.currentUser.owner)
          })
          .then( res => this.setState({
              like: true,
@@ -43,7 +43,7 @@ import React, { Component } from 'react';
      unlike(){
          //Quita un email en la propiedad like del post.
          db.collection('posts').doc(this.props.dataPost.id).update({
-             likes:firebase.firestore.FieldValue.arrayRemove(auth.currentUser.email)
+             likes:firebase.firestore.FieldValue.arrayRemove(auth.currentUser.owner)
          })
          .then( res => this.setState({
              like: false,
