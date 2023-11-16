@@ -43,8 +43,6 @@
      render(){
          console.log(this.state);
          return(
-            
-
              <View style = {styles.home}>
                 <Image
                     style={styles.image}
@@ -65,14 +63,14 @@
 
             {/* Botón para ir a la pantalla de log in */}
 
-                 <Text style={styles.title}>Crear nuevo post</Text>
-                 <PostForm />
+                 <Text style={styles.title}>Foodies Feed</Text>
+                 {/* <PostForm />
 
                  <FlatList
                     data={this.state.posts}
                     keyExtractor={ unPost => unPost.id }
                     renderItem={ ({item}) => <Post dataPost = {item} />  }
-                />
+                /> */}
 
              </View>
          )

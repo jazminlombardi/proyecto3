@@ -43,12 +43,12 @@ class PostForm extends Component {
     render(){
         return(
             <View style={styles.formContainer}>
-                <Text>New Post</Text>
+                <Text style={styles.newpost}>New Post</Text>
                 <MyCamera style={styles.camara} trearUrlDelaFoto={ url => this.trearUrlDelaFoto(url) }/>
                 <TextInput
                     style={styles.input}
                     onChangeText={(text)=>this.setState({textoPost: text})}
-                    placeholder='Escribir...'
+                    placeholder='Escribir un comentario...'
                     keyboardType='default'
                     value={this.state.textoPost}
                     />
@@ -65,14 +65,21 @@ const styles = StyleSheet.create({
         marginBottom: 0,
         paddingBottom: 10,
         padding:0, 
+        height:25,
+    },
+    newpost:{
+        color: 'black',
+        marginLeft: 15,
+        fontSize: 30,
+        fontWeight: 'bold',
     },
     formContainer:{
         paddingHorizontal:5,
-      
+        marginTop: 60,
         marginHorizontal:30,
-        padding: 0,
-        borderWidth: 1,
-        borderColor: "grey",
+        padding: 25,
+        borderWidth: 4,
+        borderColor: "black",
         borderRadius: 6,
         marginLeft: 20,
         backgroundColor: 'lightgrey'
@@ -82,25 +89,29 @@ const styles = StyleSheet.create({
         paddingVertical:5,
         paddingHorizontal: 10,
         borderWidth:1,
-        borderColor: 'grey',
+        borderColor: 'black',
         borderStyle: 'solid',
         borderRadius: 6,
         marginVertical:9,
         marginLeft: 13,
-        marginRight:7,
+        marginRight:15,
     },
     button:{
         backgroundColor:'darkred',
         paddingHorizontal: 10,
         paddingVertical: 6,
         textAlign: 'center',
-        borderRadius:4, 
+        borderRadius:6, 
         borderWidth:1,
         borderStyle: 'solid',
-        borderColor: 'darkred'
+        borderColor: 'darkred',
+        marginLeft: 13,
+        marginRight: 13,
+    
     },
     textButton:{
-        color: 'white'
+        color: 'white',
+
     }
 
 })

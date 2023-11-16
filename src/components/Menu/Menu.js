@@ -5,7 +5,6 @@ import {FontAwesome} from '@expo/vector-icons';
 
 import Home from '../../screens/Home/Home';
 import MiPerfil from '../../screens/MiPerfil/MiPerfil';
-import Filtrado from '../../screens/Filtrado/Filtrado';
 import PostForm from "../../screens/PostForm/PostForm";
 import SearchResults from '../../screens/SearchResults/SearchResults';
 
@@ -28,15 +27,15 @@ class Menu extends Component {
             <Tab.Screen name='Mi perfil' component={MiPerfil} options={{ 
               tabBarIcon:() => <FontAwesome name="user" size = {15} color="black"/>,
                     headerShown:false,
-                    title: 'user'}}/>
+                    title: 'User'}}/>
             <Tab.Screen name='PostForm' component={PostForm} options={{ 
-              tabBarIcon:() => <FontAwesome name="camara" size = {15} color="black"/>,
+              tabBarIcon:() => <FontAwesome name="camera" size = {15} color="black"/>,
                     headerShown:false,
-                    title: 'camara'}}/>
+                    title: 'New Post'}}/>
             <Tab.Screen name='SearchResults' component={SearchResults} options={{ 
-              tabBarIcon:() => <FontAwesome name="busqueda" size = {15} color="black"/>,
+              tabBarIcon:() => <FontAwesome name="search" size = {15} color="black"/>,
                     headerShown:false,
-                    title: 'busqueda' }}/>
+                    title: 'Search' }}/>
         </Tab.Navigator>
     );
   }
