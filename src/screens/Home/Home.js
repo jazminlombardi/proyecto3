@@ -48,12 +48,12 @@
              <View style = {styles.home}>
                 <Image
                     style={styles.image}
-                    source = {require('/assets/logo.png')}
+                    source = {require('/assets/isologo.png')}
                     resizeMode= "center"
                 />
                  <Text style={styles.screenTitle} >HOME</Text>
                  <TouchableOpacity onPress={()=>this.logout()}>
-                     <Text>Logout</Text>
+                     <Text style={styles.logout}>Logout</Text>
                  </TouchableOpacity>
             {/* Botón para ir a la pantalla de registro */}
                 <TouchableOpacity
@@ -90,7 +90,12 @@
         fontSize: 30,
         fontWeight: 'bold',
         marginLeft: 20,
-        marginVertical: 10
+        marginVertical: 0
+    },
+
+    logout:{
+        marginLeft: 20,
+        color: 'black'
     },
     title:{
         fontSize: 20,
@@ -101,6 +106,7 @@
 
       button: {
         marginTop: 20,
+        marginLeft: 20,
         padding: 10,
         backgroundColor: 'darkred',
         borderRadius: 4,
@@ -110,9 +116,11 @@
       buttonText: {
         color: 'white',
         fontWeight: 'bold',
+        
       },
       image:{
-            height: 80,
+            height: 150,
+            paddingBottom: 5,
       }
 
     

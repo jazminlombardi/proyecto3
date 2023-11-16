@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-// import {Camera} from 'expo-camera'; con esto me crushea 
+import {Camera} from 'expo-camera';
 import {db, storage} from '../../firebase/config';
 import { TouchableOpacity, View, Text, StyleSheet, Image } from 'react-native';
 
@@ -133,17 +133,17 @@ const styles = StyleSheet.create({
       height:"40vh",
     },
     button:{
-        backgroundColor:'#28a745',
+        backgroundColor:'darkred',
         paddingHorizontal: 10,
         paddingVertical: 6,
         textAlign: 'center',
         borderRadius:4, 
         borderWidth:1,
         borderStyle: 'solid',
-        borderColor: '#28a745'
+        borderColor: 'darkred'
     },
     textButton:{
-        color: '#fff',
+        color: 'white',
         textAlign: "center"
     },
     confirm:{
@@ -151,14 +151,14 @@ const styles = StyleSheet.create({
         justifyContent: "space-between"
     },
     confirmButton:{
-        backgroundColor:'#28a745',
+        backgroundColor:'darkred',
         paddingHorizontal: 10,
         paddingVertical: 6,
         textAlign: 'center',
         borderRadius:4, 
     },
     cancelButton:{
-        backgroundColor:'#dc3545',
+        backgroundColor:'darkred',
         paddingHorizontal: 10,
         paddingVertical: 6,
         textAlign: 'center',

@@ -44,7 +44,7 @@ class PostForm extends Component {
         return(
             <View style={styles.formContainer}>
                 <Text>New Post</Text>
-                <MyCamera trearUrlDelaFoto={ url => this.trearUrlDelaFoto(url) }/>
+                <MyCamera style={styles.camara} trearUrlDelaFoto={ url => this.trearUrlDelaFoto(url) }/>
                 <TextInput
                     style={styles.input}
                     onChangeText={(text)=>this.setState({textoPost: text})}
@@ -61,38 +61,46 @@ class PostForm extends Component {
 }
 
 const styles = StyleSheet.create({
+    camara:{
+        marginBottom: 0,
+        paddingBottom: 10,
+        padding:0, 
+    },
     formContainer:{
-        paddingHorizontal:10,
-        marginTop: 20,
-        marginBottom: 40,
+        paddingHorizontal:5,
+      
         marginHorizontal:30,
-        padding: 10,
+        padding: 0,
         borderWidth: 1,
-        borderColor: "#ccc",
+        borderColor: "grey",
         borderRadius: 6,
+        marginLeft: 20,
+        backgroundColor: 'lightgrey'
     },
     input:{
-        height:20,
-        paddingVertical:15,
+        height:25,
+        paddingVertical:5,
         paddingHorizontal: 10,
         borderWidth:1,
-        borderColor: '#ccc',
+        borderColor: 'grey',
         borderStyle: 'solid',
         borderRadius: 6,
-        marginVertical:10,
+        marginVertical:9,
+        marginLeft: 13,
+        marginRight:7,
     },
     button:{
-        backgroundColor:'#28a745',
+        backgroundColor:'darkred',
         paddingHorizontal: 10,
         paddingVertical: 6,
         textAlign: 'center',
         borderRadius:4, 
         borderWidth:1,
         borderStyle: 'solid',
-        borderColor: '#28a745'
+        borderColor: 'darkred'
     },
     textButton:{
-        color: '#fff'
+        color: 'white'
     }
 
 })
