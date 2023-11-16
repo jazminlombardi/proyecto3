@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {db, auth } from '../../firebase/config';
+import MyCamera from '../../components/MyCamara/MyCamara';
 import {TextInput, TouchableOpacity, View, Text, StyleSheet} from 'react-native';
 
 class PostForm extends Component {
@@ -7,20 +8,35 @@ class PostForm extends Component {
         super()
         this.state={
            textoPost:'',
+           fotoUrl:'',
         }
     }
 
     //1)Completar la creación de posts
-    crearPost(owner, textoPost, createdAt){
+    crearPost(owner, textoPost, fotoUrl, createdAt){
         //Crear la colección Users
         db.collection('posts').add({
             owner: owner, //auth.currentUser.email,
             textoPost: textoPost, //this.state.textoPost,
-            createdAt: createdAt, //Date.now(), 
-            likes: []
+            fotoUrl:fotoUrl,
+            likes:[],
+            createdAt: createdAt //Date.now(), 
         })
-        .then( res => console.log(res))
+        .then( res => {
+            console.log('Creando post...');
+            this.setState({
+                textoPost:'',
+            })
+
+        }) 
         .catch( e => console.log(e))
+    }
+
+    //Método para que el form consiga la url de la foto que tiene la cámara
+    trearUrlDelaFoto(url){
+        this.setState({
+            fotoUrl: url
+        })
     }
 
 
@@ -28,6 +44,7 @@ class PostForm extends Component {
         return(
             <View style={styles.formContainer}>
                 <Text>New Post</Text>
+                <MyCamera trearUrlDelaFoto={ url => this.trearUrlDelaFoto(url) }/>
                 <TextInput
                     style={styles.input}
                     onChangeText={(text)=>this.setState({textoPost: text})}
@@ -35,7 +52,7 @@ class PostForm extends Component {
                     keyboardType='default'
                     value={this.state.textoPost}
                     />
-                <TouchableOpacity style={styles.button} onPress={()=>this.crearPost(auth.currentUser.email, this.state.textoPost, Date.now())}>
+                <TouchableOpacity style={styles.button} onPress={()=>this.crearPost(auth.currentUser.email, this.state.textoPost, this.state.fotoUrl, Date.now())}>
                     <Text style={styles.textButton}>Postear</Text>    
                 </TouchableOpacity>
             </View>
@@ -47,10 +64,12 @@ const styles = StyleSheet.create({
     formContainer:{
         paddingHorizontal:10,
         marginTop: 20,
-        backgroundColor:"white",
-        margin:"10px",
-        padding:"20px",
-        borderRadius:"10px",
+        marginBottom: 40,
+        marginHorizontal:30,
+        padding: 10,
+        borderWidth: 1,
+        borderColor: "#ccc",
+        borderRadius: 6,
     },
     input:{
         height:20,
@@ -63,15 +82,17 @@ const styles = StyleSheet.create({
         marginVertical:10,
     },
     button:{
-        backgroundColor:'darkred',
+        backgroundColor:'#28a745',
         paddingHorizontal: 10,
         paddingVertical: 6,
         textAlign: 'center',
         borderRadius:4, 
-   
+        borderWidth:1,
+        borderStyle: 'solid',
+        borderColor: '#28a745'
     },
     textButton:{
-        color: 'white'
+        color: '#fff'
     }
 
 })
