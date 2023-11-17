@@ -121,16 +121,19 @@ class MyCamera extends Component{
 
 const styles = StyleSheet.create({
     container:{
-        height:"45vh",
+        height:"60vh",
+        width:"70vh",
         marginBottom: 20,
         marginHorizontal:5,
-        padding: 10,
+        padding: 15,
         
     },
     cameraBody: {
       marginTop: 20,
       marginBottom: 10,
       height:"40vh",
+      borderRadius:"10px"
+
     },
     button:{
         backgroundColor:'darkred',

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
- import { Text, View, StyleSheet, TouchableOpacity} from 'react-native';
+ import { Text, View, StyleSheet, TouchableOpacity, Image} from 'react-native';
  import { db, auth } from '../../firebase/config';
+ import { AntDesign } from '@expo/vector-icons';
  import firebase from 'firebase';
 
  class Post extends Component {
@@ -59,8 +60,13 @@ import React, { Component } from 'react';
      render(){
          console.log(this.props)
          return (
-             <View>
+/*              <View>
                  <Text>{ this.props.dataPost.datos.email }</Text>
+                 <Image
+                    style={styles.image}
+                    source = { this.props.dataPost.datos.fotoURL }
+                    resizeMode= "center"
+                />                 
                  <Text>{ this.props.dataPost.datos.textoPost }</Text>
                  <Text>Cantidad de Likes:{ this.state.cantidadDeLikes }</Text>
                  {
@@ -77,7 +83,36 @@ import React, { Component } from 'react';
                  }
 
              </View>
+ */
+             <View style={styles.unPostContainer}>
+             <Text>{this.props.dataPost.datos.owner}</Text>
+             <Image
+                 style={styles.image}
+                 source = {this.props.dataPost.datos.fotoUrl}
+                 resizeMode= "center"
+             />
+             <Text>{this.props.dataPost.datos.textoPost}</Text>
+             <Text>Likes: {this.state.cantidadDeLikes}</Text>
 
+
+             {this.state.like ? 
+             <TouchableOpacity onPress={()=>this.unLike()}>
+                 <AntDesign name="heart" size={22} color="red" />
+             </TouchableOpacity>
+             :
+             <TouchableOpacity onPress={()=>this.likear()}>
+                 <AntDesign name="hearto" size={22} color="black" />
+             </TouchableOpacity>
+             }
+
+            
+         {auth.currentUser.email == this.props.dataPost.datos.owner && 
+             <TouchableOpacity style={styles.button} onPress={()=>this.deletePost()}>
+                 <Text style={styles.textButton}>Delete post</Text>
+             </TouchableOpacity>
+              } 
+             
+         </View>
          )
      }
 
@@ -99,18 +134,31 @@ import React, { Component } from 'react';
          marginVertical:10,
      },
      button:{
-         backgroundColor:'orange',
-         paddingHorizontal: 10,
-         paddingVertical: 6,
-         textAlign: 'center',
-         borderRadius:4, 
-         borderWidth:1,
-         borderStyle: 'solid',
-         borderColor: 'orange'
-     },
-     textButton:{
-         color: 'white'
-     }
+        backgroundColor:'darkred',
+        paddingHorizontal: 10,
+        paddingVertical: 6,
+        textAlign: 'center',
+        borderRadius:4, 
+
+    },
+    textButton:{
+        color: 'white'
+    },
+     unPostContainer:{
+        flex: 1,
+        backgroundColor: '#ffffff',
+        borderRadius: 6,
+        marginHorizontal: 20,
+        padding: 5,
+        marginVertical: 5
+    },
+
+    image: {
+        height: 100,
+        width: "100%",
+        alignContent:"flex-start"
+    
+    },
  })
 
  export default Post;

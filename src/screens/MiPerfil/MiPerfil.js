@@ -62,9 +62,10 @@ render() {
             <FlatList
                 data={this.state.posts}
                 keyExtractor={(unPost) => unPost.id}
-                renderItem={({ item }) => <Post dataPost={item} />}
+                renderItem={({ item }) => <PostInProfile dataPost={item} />}
                 style={styles.postList}
             />
+            
         </View>
     );
 }}
@@ -121,6 +122,8 @@ const styles = StyleSheet.create({
         },
         postList: {
             marginTop: 20,
+            display:"flex",
+            flexDirection:"row",
         },
         post: {
             borderWidth: 1,

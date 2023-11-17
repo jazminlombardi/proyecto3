@@ -64,13 +64,12 @@
             {/* Botón para ir a la pantalla de log in */}
 
                  <Text style={styles.title}>Foodies Feed</Text>
-                 {/* <PostForm />
 
                  <FlatList
                     data={this.state.posts}
                     keyExtractor={ unPost => unPost.id }
                     renderItem={ ({item}) => <Post dataPost = {item} />  }
-                /> */}
+                /> 
 
                
 
