@@ -72,6 +72,8 @@
                     renderItem={ ({item}) => <Post dataPost = {item} />  }
                 /> */}
 
+               
+
              </View>
          )
      }

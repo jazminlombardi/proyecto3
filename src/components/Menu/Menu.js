@@ -24,7 +24,7 @@ class Menu extends Component {
               tabBarIcon:() => <FontAwesome name="home" size = {15} color="black"/>,
                     headerShown:false,
                     title: 'Home'}}/>
-            <Tab.Screen name='Mi perfil' component={MiPerfil} options={{ 
+            <Tab.Screen name='MiPerfil' component={MiPerfil} options={{ 
               tabBarIcon:() => <FontAwesome name="user" size = {15} color="black"/>,
                     headerShown:false,
                     title: 'User'}}/>
