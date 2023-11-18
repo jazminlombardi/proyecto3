@@ -9,14 +9,19 @@ class MiPerfil extends Component {
     constructor(props) {
         super();
         this.state = {
+            susPosts: [],
+            suInfo: {},
             posts: [], // Initialize posts as an empty array
 /*             cantidadDePosts: this.props.datos.posts.length, */
         };
     }
 
     componentDidMount() {
+        let perfil = this.state.owner
         // Traer los datos de Firebase y cargarlos en el estado.
-        db.collection('posts').onSnapshot((listaPosts) => {
+        db.collection('posts')
+        .where ('owner', '==', perfil)
+        .onSnapshot((listaPosts) => {
             let postsAMostrar = [];
 
             listaPosts.forEach((unPost) => {
@@ -27,9 +32,19 @@ class MiPerfil extends Component {
             });
 
             this.setState({
-                posts: postsAMostrar,
+                MisPosts: postsAMostrar,
             });
         });
+
+        db.collection('users')
+        .where ('owner', '==', this.state.mailUser)
+        .onSnapshot (doc => {
+            doc.forEach(doc =>
+                this.setState ({
+                    id: doc.id,
+                    suInfo: doc.data()
+            }))
+        })
     }
 
     logout() {
@@ -44,6 +59,9 @@ class MiPerfil extends Component {
 
 
 render() {
+    console.log(this.state.suInfo)
+    console.log(this.state.susPosts)
+
     return (
         <View style={styles.container}>
             <Text style={styles.header}>MI PERFIL</Text>
@@ -59,7 +77,7 @@ render() {
             <Text style={styles.postList}>Lista de posteos creados</Text>
 
             <FlatList
-                data={this.state.posts}
+                data={this.state.MisPosts}
                 keyExtractor={(unPost) => unPost.id}
                 renderItem={({ item }) => <PostInProfile dataPost={item} />}
                 style={styles.postList}

@@ -21,6 +21,11 @@ class PostInProfile extends Component {
                 like: true
             })
         }
+        if(this.props.dataPost.datos.owner.includes(auth.currentUser.email)){
+            this.setState({
+                owner: true
+            })
+        }
     }
 
 
@@ -65,8 +70,12 @@ class PostInProfile extends Component {
    }
 
     render(){
+
+
         return(
+
             <View style={styles.unPostContainer}>
+
                 <Text>{this.props.dataPost.datos.owner}</Text>
                 <Image
                     style={styles.image}
@@ -92,9 +101,11 @@ class PostInProfile extends Component {
                 <TouchableOpacity style={styles.button} onPress={()=>this.deletePost()}>
                     <Text style={styles.textButton}>Delete post</Text>
                 </TouchableOpacity>
-                 } 
                 
+                 } 
             </View>
+            
+            
         )
     }
 }

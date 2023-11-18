@@ -9,6 +9,8 @@ class PostForm extends Component {
         this.state={
            textoPost:'',
            fotoUrl:'',
+           showSuccessMessage: false 
+
         }
     }
 
@@ -26,6 +28,7 @@ class PostForm extends Component {
             console.log('Creando post...');
             this.setState({
                 textoPost:'',
+                showSuccessMessage: true 
             })
 
         }) 
@@ -55,6 +58,13 @@ class PostForm extends Component {
                 <TouchableOpacity style={styles.button} onPress={()=>this.crearPost(auth.currentUser.email, this.state.textoPost, this.state.fotoUrl, Date.now())}>
                     <Text style={styles.textButton}>Postear</Text>    
                 </TouchableOpacity>
+                {this.state.showSuccessMessage && (
+                    <View style={styles.successMessageContainer}>
+                        <Text style={styles.successMessageText}>
+                            Tu post ya está disponible en tu perfil
+                        </Text>
+                    </View>
+                )}
 
             </View>
         )
@@ -110,6 +120,18 @@ const styles = StyleSheet.create({
     textButton:{
         color: 'white',
 
+    },
+    successMessageContainer: {
+        position: 'absolute',
+        top: 20,
+        left: 0,
+        right: 0,
+        backgroundColor: 'green',
+        padding: 10,
+        alignItems: 'center'
+    },
+    successMessageText: {
+        color: 'white'
     }
 
 })

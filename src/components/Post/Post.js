@@ -91,25 +91,31 @@ import React, { Component } from 'react';
                  source = {this.props.dataPost.datos.fotoUrl}
                  resizeMode= "center"
              />
-             <Text>{this.props.dataPost.datos.textoPost}</Text>
-             <Text>Likes: {this.state.cantidadDeLikes}</Text>
+             <Text style= {styles.textoPost}>{this.props.dataPost.datos.textoPost}</Text>
 
+             {/* if para 1 like  o  x likeS */}
+             {this.state.cantidadDeLikes == 1 ?
+             <Text>Este post tiene {this.state.cantidadDeLikes} like</Text>
+                    :
+            <Text>Este post tiene {this.state.cantidadDeLikes} likes</Text>
+             }
 
+             {/* if para like y unlike */}
              {this.state.like ? 
-             <TouchableOpacity onPress={()=>this.unLike()}>
-                 <AntDesign name="heart" size={22} color="red" />
+             <TouchableOpacity style={styles.unlike} onPress={()=>this.unLike()} activeOpacity={0.7}>
+                <Text style={styles.textButton}>Quitar like</Text>                     
              </TouchableOpacity>
              
              :
-             <TouchableOpacity onPress={()=>this.likear()}>
-                 <AntDesign name="heart" size={22} color="black" />
+             <TouchableOpacity style={styles.like} onPress={()=>this.likear()} activeOpacity={0.7}>
+                <Text style={styles.textButton}>Like</Text>    
              </TouchableOpacity>
              }
 
             
          {auth.currentUser.email == this.props.dataPost.datos.owner && 
-             <TouchableOpacity style={styles.button} onPress={()=>this.deletePost()}>
-                 <Text style={styles.textButton}>Delete post</Text>
+             <TouchableOpacity style={styles.deletebutton} onPress={()=>this.deletePost()} activeOpacity={0.7}>
+                 <Text style={styles.deletetextButton}>Delete post</Text>
              </TouchableOpacity>
               } 
              
@@ -140,10 +146,47 @@ import React, { Component } from 'react';
         paddingVertical: 6,
         textAlign: 'center',
         borderRadius:4, 
+        marginTop:4,
+        marginBottom:4,
 
     },
+    deletebutton:{
+        backgroundColor:'lightgrey',
+        paddingHorizontal: 10,
+        paddingVertical: 6,
+        textAlign: 'center',
+        borderRadius:4, 
+        marginTop:4,
+        marginBottom:4,
+
+    },
+    unlike:{
+        backgroundColor:'darkred',
+        paddingHorizontal: 10,
+        paddingVertical: 6,
+        textAlign: 'center',
+        borderRadius:4, 
+        marginTop:4,
+        marginBottom:4,
+
+    },
+
+    like:{
+        backgroundColor:'lightgrey',
+        paddingHorizontal: 10,
+        paddingVertical: 6,
+        textAlign: 'center',
+        borderRadius:4,
+        marginTop:4,
+        marginBottom:4,
+    },
+
+
     textButton:{
         color: 'white'
+    },
+    deletetextButton:{
+        color: 'darkred'
     },
      unPostContainer:{
         flex: 1,
@@ -160,6 +203,11 @@ import React, { Component } from 'react';
         alignContent:"flex-start"
     
     },
+    textoPost:{
+        textAlign:"center",
+        fontSize:"18px",
+        fontStyle:"bold"
+    }
  })
 
  export default Post;
