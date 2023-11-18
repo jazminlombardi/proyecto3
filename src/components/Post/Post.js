@@ -76,7 +76,7 @@ import React, { Component } from 'react';
              </TouchableOpacity>
              <Image
                  style={styles.image}
-                 source = {{uri: this.props.dataPost.datos.fotoUrl}}
+                 source = {this.props.dataPost.datos.fotoUrl}
                  resizeMode= "center"
              />
              <Text style= {styles.textoPost}>{this.props.dataPost.datos.textoPost}</Text>

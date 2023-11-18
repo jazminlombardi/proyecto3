@@ -129,7 +129,7 @@ import { TouchableWithoutFeedback } from 'react-native-web';
     text:{
         paddingTop:20,
         paddingBottom:7,
-        color:"darkred"
+        color:"red"
 
     },
     firstBox:{
@@ -164,7 +164,7 @@ import { TouchableWithoutFeedback } from 'react-native-web';
         marginVertical:10,
     },
      button:{
-        backgroundColor:'darkred',
+        backgroundColor:'red',
         paddingHorizontal: 10,
         paddingVertical: 6,
         textAlign: 'center',
@@ -174,13 +174,16 @@ import { TouchableWithoutFeedback } from 'react-native-web';
          color: 'white'
      },
      image: {
+        alignSelf: "center",
         height: 80,
         width: "100%",
+        borderRadius: 10,
+        marginHorizontal: 100,
     },
     footerText: {
         textAlign: 'center',
         fontSize: 13,
-        color: 'darkred',
+        color: 'red',
         paddingTop:10,
     },
 
