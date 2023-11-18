@@ -47,7 +47,7 @@ class MiPerfil extends Component {
             })
     }
 
-    signOut() {
+    logout() {
         auth.signOut();
     }
 
@@ -59,7 +59,6 @@ render() {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.header}>MI PERFIL</Text>
             <Image source={{ uri: this.state.infoUser.profileImage  }} style={styles.profileImage} />
 
             <Text style={styles.userName}>{this.state.infoUser.userName} </Text>
@@ -72,12 +71,14 @@ render() {
                 <Text style={styles.buttontext}>Logout</Text>
             </TouchableOpacity>
 
-            <Text style={styles.postList}>Lista de posteos creados</Text>
+            <Text style={styles.header}>Mis Posts</Text>
             <FlatList
                 data={this.state.posts}
                 keyExtractor={(unPost) => unPost.id}
                 renderItem={({ item }) => <PostInProfile dataPost={item} />}
                 style={styles.postList}
+                numColumns={3}
+                columnWrapperStyle={styles.row}
             />
             
         </View>
@@ -90,7 +91,7 @@ const styles = StyleSheet.create({
             alignItems: 'center',
             justifyContent: 'center',
             backgroundColor: 'white',
-
+            padding:80,
 
         },
         header: {

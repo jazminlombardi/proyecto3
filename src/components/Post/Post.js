@@ -68,32 +68,12 @@ import React, { Component } from 'react';
      render(){
          console.log(this.props)
          return (
-/*              <View>
-                 <Text>{ this.props.dataPost.datos.email }</Text>
-                 <Image
-                    style={styles.image}
-                    source = { this.props.dataPost.datos.fotoURL }
-                    resizeMode= "center"
-                />                 
-                 <Text>{ this.props.dataPost.datos.textoPost }</Text>
-                 <Text>Cantidad de Likes:{ this.state.cantidadDeLikes }</Text>
-                 {
-                     this.state.like ?
-                         <TouchableOpacity style={styles.button} onPress={()=>this.unlike()}>
-                             <Text style={styles.textButton}>unLike</Text>    
-                         </TouchableOpacity>
 
-                         :
-
-                         <TouchableOpacity style={styles.button} onPress={()=> this.likear()} >
-                             <Text style={styles.textButton}>Likear</Text>    
-                         </TouchableOpacity>
-                 }
-
-             </View>
- */
              <View style={styles.unPostContainer}>
-             <Text>{this.props.dataPost.datos.owner}</Text>
+             <TouchableOpacity onPress={()=>this.props.navigation.navigate('OtroPerfil', {mailUser: this.props.dataPost.datos.owner})} activeOpacity={0.7}>
+                <Text>{this.props.dataPost.datos.owner}</Text>                     
+             </TouchableOpacity>
+             {/* <Text>{this.props.dataPost.datos.owner}</Text> */}
              <Image
                  style={styles.image}
                  source = {{uri: this.props.dataPost.datos.fotoUrl}}
