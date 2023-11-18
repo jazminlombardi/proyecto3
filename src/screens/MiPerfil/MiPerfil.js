@@ -5,57 +5,52 @@ import {Image, TextInput, TouchableOpacity, View, Text, StyleSheet, FlatList, Sc
 import Post from "../../components/Post/Post"
 
 
+
 class MiPerfil extends Component {
-    constructor(props) {
-        super();
+    constructor(props){
+        
+        super(props)
         this.state = {
-            susPosts: [],
-            suInfo: {},
-            posts: [], // Initialize posts as an empty array
-/*             cantidadDePosts: this.props.datos.posts.length, */
-        };
+            posts: [],
+            infoUser: {},
+            id: ''
+        }
     }
 
-    componentDidMount() {
-        let perfil = this.state.owner
-        // Traer los datos de Firebase y cargarlos en el estado.
-        db.collection('posts')
-        .where ('owner', '==', perfil)
-        .onSnapshot((listaPosts) => {
-            let postsAMostrar = [];
+    componentDidMount(){
+        db.collection('posts').where('owner', '==', auth.currentUser.email)
+        .onSnapshot(
+            listaPosts => {
+                let postsAMostrar = [];
 
-            listaPosts.forEach((unPost) => {
-                postsAMostrar.push({
-                    id: unPost.id,
-                    datos: unPost.data(),
-                });
-            });
+                listaPosts.forEach(unPost => {
+                    postsAMostrar.push({
+                        id: unPost.id,
+                        datos: unPost.data(),
+                    })
+                })
 
-            this.setState({
-                MisPosts: postsAMostrar,
-            });
-        });
+                this.setState({
+                    posts: postsAMostrar
+                })
+            }
+        )
 
         db.collection('users')
-        .where ('owner', '==', this.state.mailUser)
-        .onSnapshot (doc => {
-            doc.forEach(doc =>
-                this.setState ({
-                    id: doc.id,
-                    suInfo: doc.data()
-            }))
-        })
+            .where('owner', '==', auth.currentUser.email)
+            .onSnapshot(doc => {
+                doc.forEach(doc =>
+                    this.setState({
+                        id: doc.id,
+                        infoUser: doc.data()
+                    }))
+            })
     }
 
-    logout() {
+    signOut() {
         auth.signOut();
-        this.props.navigation.navigate('Login');
     }
 
-    borrar() {
-        // Placeholder for the borrar() method
-        // Implement the logic to delete a post
-    }
 
 
 render() {
@@ -65,19 +60,21 @@ render() {
     return (
         <View style={styles.container}>
             <Text style={styles.header}>MI PERFIL</Text>
+            <Image source={{ uri: this.state.infoUser.profileImage  }} style={styles.profileImage} />
+
+            <Text style={styles.userName}>{this.state.infoUser.userName} </Text>
+            <Text style={styles.bio}>BIOGRAFÍA {this.state.infoUser.bio} </Text>
+            <Text style={styles.userInfoText}>email: {this.state.infoUser.owner} </Text>
+
+            <Text style={styles.userInfoText}>CANTIDAD DE POSTEOS:{this.state.posts.length} </Text>
+
             <TouchableOpacity onPressOut={() => this.logout()} style={styles.logoutBtn}>
-                <Text>Logout</Text>
+                <Text style={styles.buttontext}>Logout</Text>
             </TouchableOpacity>
-            <Text style={styles.userInfoText}>NOMBRE DE USUARIO: </Text>
-            <Text style={styles.userInfoText}>EMAIL:{/* {this.props.datos.owner} */}</Text>
-            <Text style={styles.bio}>BIOGRAFÍA</Text>
-            <Image source={{ url: '' }} style={styles.profileImage} />
-            <Text style={styles.userInfoText}>CANTIDAD DE POSTEOS:{/* {this.state.cantidadDePosts} */} </Text>
 
             <Text style={styles.postList}>Lista de posteos creados</Text>
-
             <FlatList
-                data={this.state.MisPosts}
+                data={this.state.posts}
                 keyExtractor={(unPost) => unPost.id}
                 renderItem={({ item }) => <PostInProfile dataPost={item} />}
                 style={styles.postList}
@@ -90,10 +87,11 @@ render() {
 
 const styles = StyleSheet.create({
         container: {
-            flex: 1,
             alignItems: 'center',
             justifyContent: 'center',
             backgroundColor: 'white',
+
+
         },
         header: {
             backgroundColor: 'white',
@@ -107,15 +105,26 @@ const styles = StyleSheet.create({
         },
         logoutBtn: {
             backgroundColor: 'darkred',
-            color: 'white',
             padding: 10,
             marginTop: 10,
             textAlign: 'center',
             borderRadius: 5,
         },
+        buttontext:{
+            color:"white"
+        },
         userInfoText: {
             color: 'black',
             marginBottom: 5,
+        },
+        bio:{
+            color: 'black',
+            marginBottom: 5,
+        },
+        userName: {
+            color: 'black',
+            padding: 5,
+            fontSize:"18px"
         },
         bio: {
             marginTop: 20,
@@ -141,6 +150,7 @@ const styles = StyleSheet.create({
             marginTop: 20,
             display:"flex",
             flexDirection:"row",
+            width:"auto"
         },
         post: {
             borderWidth: 1,

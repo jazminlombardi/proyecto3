@@ -56,6 +56,14 @@ import React, { Component } from 'react';
          .catch( e => console.log(e))
      }
 
+     deletePost(){
+        db.collection('posts').doc(this.props.dataPost.id).delete()
+        .then( res => {
+            console.log('Post eliminado');
+        })
+        .catch( e => console.log(e))
+       }
+
 
      render(){
          console.log(this.props)
@@ -88,7 +96,7 @@ import React, { Component } from 'react';
              <Text>{this.props.dataPost.datos.owner}</Text>
              <Image
                  style={styles.image}
-                 source = {this.props.dataPost.datos.fotoUrl}
+                 source = {{uri: this.props.dataPost.datos.fotoUrl}}
                  resizeMode= "center"
              />
              <Text style= {styles.textoPost}>{this.props.dataPost.datos.textoPost}</Text>

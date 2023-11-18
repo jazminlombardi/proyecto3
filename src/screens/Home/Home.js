@@ -14,7 +14,8 @@
 
      componentDidMount(){
          //Traer los datos de Firebase y cargarlos en el estado.
-         db.collection('posts').onSnapshot(
+         db.collection('posts').where('owner', '!=', auth.currentUser.email)
+         .onSnapshot(
              listaPosts => {
                  let postsAMostrar = [];
 

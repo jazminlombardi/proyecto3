@@ -79,7 +79,7 @@ class PostInProfile extends Component {
                 <Text>{this.props.dataPost.datos.owner}</Text>
                 <Image
                     style={styles.image}
-                    source = {this.props.dataPost.datos.fotoUrl}
+                    source = {{uri: this.props.dataPost.datos.fotoUrl}}
                     resizeMode= "center"
                 />
                 <Text>{this.props.dataPost.datos.textoPost}</Text>
