@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
         padding: 25,
         borderRadius: 6,
         marginLeft: 20,
-        backgroundColor: 'lightgrey'
+        backgroundColor: 'white'
     },
     input:{
         height:40,
@@ -103,22 +103,23 @@ const styles = StyleSheet.create({
         marginVertical:9,
         marginLeft: 13,
         marginRight:15,
+        borderWidth:1,
+        borderColor:'lightgrey',
     },
     button:{
-        backgroundColor:'darkred',
+        backgroundColor:'rgb(228, 33, 33)',
         paddingHorizontal: 10,
         paddingVertical: 6,
         textAlign: 'center',
         borderRadius:6, 
-        borderWidth:1,
-        borderStyle: 'solid',
-        borderColor: 'darkred',
         marginLeft: 13,
         marginRight: 13,
     
     },
     textButton:{
         color: 'white',
+        textAlign:'center',
+
 
     },
     successMessageContainer: {

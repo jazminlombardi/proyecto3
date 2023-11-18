@@ -3,6 +3,7 @@
  import { db, auth } from '../../firebase/config';
  import PostForm from '../PostForm/PostForm';
  import Post from '../../components/Post/Post';
+import { ScrollView } from 'react-native-web';
 
  class Home extends Component {
      constructor(){
@@ -44,10 +45,10 @@
      render(){
          console.log(this.state);
          return(
-             <View style = {styles.home}>
+             <ScrollView style = {styles.home}>
                 <Image
                     style={styles.image}
-                    source = {require('/assets/isologo.png')}
+                    source = {require('/assets/logo.png')}
                     resizeMode= "center"
                 />
                  <Text style={styles.screenTitle} >HOME</Text>
@@ -58,7 +59,7 @@
 
             {/* Botón para ir a la pantalla de log in */}
 
-                 <Text style={styles.title}>Foodies Feed</Text>
+                 <Text style={styles.title}> Feed</Text>
 
                  <FlatList
                     data={this.state.posts}
@@ -68,7 +69,7 @@
 
                
 
-             </View>
+             </ScrollView>
          )
      }
  }
@@ -101,7 +102,7 @@
         marginTop: 20,
         marginLeft: 20,
         padding: 10,
-        backgroundColor: 'darkred',
+        backgroundColor: 'rgb(228, 33, 33)',
         borderRadius: 4,
         width:"fit-content",
       },
@@ -112,7 +113,7 @@
         
       },
       image:{
-            height: 150,
+            height: 100,
             paddingBottom: 5,
       }
 

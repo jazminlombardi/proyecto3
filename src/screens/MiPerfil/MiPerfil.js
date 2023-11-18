@@ -67,7 +67,11 @@ render() {
 
             <Text style={styles.userInfoText}>CANTIDAD DE POSTEOS:{this.state.posts.length} </Text>
 
-            <TouchableOpacity onPressOut={() => this.logout()} style={styles.logoutBtn}>
+
+            <TouchableOpacity  onPress={()=>this.props.navigation.navigate('EditProfile', {idUser: this.state.id ,infoUser: this.state.infoUser})} activeOpacity={0.7} style={styles.editarboton}>
+                <Text style={styles.buttontext}>Editar Perfil</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPressOut={() => this.logout()} style={styles.logout}>
                 <Text style={styles.buttontext}>Logout</Text>
             </TouchableOpacity>
 
@@ -104,12 +108,20 @@ const styles = StyleSheet.create({
             marginLeft: 20,
             marginVertical: 0
         },
-        logoutBtn: {
-            backgroundColor: 'darkred',
+        editarboton: {
+            backgroundColor: 'rgb(228, 33, 33)',
             padding: 10,
             marginTop: 10,
             textAlign: 'center',
             borderRadius: 5,
+        },
+        logout:{
+            backgroundColor:"lightgrey",
+            padding: 10,
+            marginTop: 10,
+            textAlign: 'center',
+            borderRadius: 5,
+
         },
         buttontext:{
             color:"white"
@@ -135,12 +147,11 @@ const styles = StyleSheet.create({
             width: 100,
             height: 100,
             marginBottom: 10,
-            borderWidth: 2,
-            borderColor: 'darkred',
+            backgroundColor:"lightgrey",
             borderRadius: 50,
         },
         deleteBtn: {
-            backgroundColor: 'darkred',
+            backgroundColor: 'rgb(228, 33, 33)',
             color: 'white',
             padding: 5,
             textAlign: 'center',
@@ -155,7 +166,7 @@ const styles = StyleSheet.create({
         },
         post: {
             borderWidth: 1,
-            borderColor: 'darkred',
+            borderColor: 'rgb(228, 33, 33)',
             padding: 10,
             marginBottom: 10,
             backgroundColor: 'white',

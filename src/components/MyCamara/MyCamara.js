@@ -136,14 +136,12 @@ const styles = StyleSheet.create({
 
     },
     button:{
-        backgroundColor:'darkred',
+        backgroundColor:'rgb(228, 33, 33)',
         paddingHorizontal: 10,
         paddingVertical: 6,
         textAlign: 'center',
         borderRadius:4, 
-        borderWidth:1,
-        borderStyle: 'solid',
-        borderColor: 'darkred'
+
     },
     textButton:{
         color: 'white',
@@ -154,14 +152,14 @@ const styles = StyleSheet.create({
         justifyContent: "space-between"
     },
     confirmButton:{
-        backgroundColor:'darkred',
+        backgroundColor:'rgb(228, 33, 33)',
         paddingHorizontal: 10,
         paddingVertical: 6,
         textAlign: 'center',
         borderRadius:4, 
     },
     cancelButton:{
-        backgroundColor:'darkred',
+        backgroundColor:'rgb(228, 33, 33)',
         paddingHorizontal: 10,
         paddingVertical: 6,
         textAlign: 'center',

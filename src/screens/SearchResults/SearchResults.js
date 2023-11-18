@@ -58,8 +58,12 @@ class SearchResults extends Component {
         console.log(this.state.usersFiltrados);
         return(
             <ScrollView>
-                
-                <Text style={styles.screenTitle}>Search Results</Text>
+                 <Image
+                    style={styles.image}
+                    source = {require('/assets/logo.png')}
+                    resizeMode= "center"
+                />
+                <Text style={styles.screenTitle}>Encontra otros usuarios:</Text>
                 <View style={styles.searchContainer}>
                 <TextInput
                     style={styles.input}
@@ -73,13 +77,19 @@ class SearchResults extends Component {
                 {
                     this.state.usersFiltrados.length === 0 
                     ?
-                    <Text> Esperando busqueda</Text>
+                    <Text style={styles.text}> Esperando tu busqueda...</Text>
                     :
                    
                     <FlatList 
                         data= {this.state.usersFiltrados}
                         keyExtractor={ unUser => unUser.id }
-                        renderItem={ ({item}) => <Text>{item.datos.owner}</Text> }
+                        renderItem=
+                        { ({item}) =>
+                        <View style={styles.cadaResult}>
+                            <Image style={styles.profileImage}source={item.datos.profileImage} />
+                            <Text style={styles.usuario}>{item.datos.owner}</Text> 
+                        </View>
+                        }
                         style= {styles.listaPosts}
                     />
                     
@@ -99,7 +109,7 @@ const styles = StyleSheet.create({
     },
     searchContainer:{
         flex: 1,
-        backgroundColor: '#ffffff',
+        backgroundColor: 'white',
         borderRadius: 6,
         marginHorizontal: 20,
         flexDirection: 'row',
@@ -109,14 +119,48 @@ const styles = StyleSheet.create({
         marginBottom: 25
     },
     input:{
-        height:25,
         width: '65%',
-        borderWidth:1,
-        borderColor: '#ccc',
-        borderStyle: 'solid',
+        borderColor: 'lightgrey',
+        borderWidth:5,
         borderRadius: 6,
+        textAlign:'center',
+        padding:5,
+
         
     },
+    cadaResult:{
+        backgroundColor:"white",
+        padding:5,
+        borderRadius: 6,
+        margin:10,
+        display:'flex',
+        flexDirection:'row',
+        alignItems:'center'
+
+    },
+    profileImage: {
+        width: 50,
+        height: 50,
+        marginBottom: 10,
+        backgroundColor:"lightgrey",
+        borderRadius: 50,
+        margin:10,
+
+    },
+    usuario:{
+        alignItems:'center',
+        margin:10,
+    },
+
+    image:{
+        height: 100,
+        paddingBottom: 5,
+  },
+  text:{
+    textAlign:'center'
+  },
+
+
 
 })
 

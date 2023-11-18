@@ -70,10 +70,10 @@ import React, { Component } from 'react';
          return (
 
              <View style={styles.unPostContainer}>
+
              <TouchableOpacity onPress={()=>this.props.navigation.navigate('OtroPerfil', {mailUser: this.props.dataPost.datos.owner})} activeOpacity={0.7}>
-                <Text>{this.props.dataPost.datos.owner}</Text>                     
+                <Text style={styles.text}>{this.props.dataPost.datos.owner}</Text>                     
              </TouchableOpacity>
-             {/* <Text>{this.props.dataPost.datos.owner}</Text> */}
              <Image
                  style={styles.image}
                  source = {{uri: this.props.dataPost.datos.fotoUrl}}
@@ -81,15 +81,8 @@ import React, { Component } from 'react';
              />
              <Text style= {styles.textoPost}>{this.props.dataPost.datos.textoPost}</Text>
 
-             {/* if para 1 like  o  x likeS */}
-             {this.state.cantidadDeLikes == 1 ?
-             <Text>Este post tiene {this.state.cantidadDeLikes} like</Text>
-                    :
-            <Text>Este post tiene {this.state.cantidadDeLikes} likes</Text>
-             }
-
              {/* if para like y unlike */}
-             {this.state.like ? 
+{/*              {this.state.like ? 
              <TouchableOpacity style={styles.unlike} onPress={()=>this.unLike()} activeOpacity={0.7}>
                 <Text style={styles.textButton}>Quitar like</Text>                     
              </TouchableOpacity>
@@ -98,7 +91,24 @@ import React, { Component } from 'react';
              <TouchableOpacity style={styles.like} onPress={()=>this.likear()} activeOpacity={0.7}>
                 <Text style={styles.textButton}>Like</Text>    
              </TouchableOpacity>
+             } */}
+                {this.state.like ? 
+                <TouchableOpacity onPress={()=>this.unike()}>
+                    <AntDesign name="heart" size={22} color="red" style={styles.text} />
+                </TouchableOpacity>
+                :
+                <TouchableOpacity onPress={()=>this.likear()}>
+                    <AntDesign name="hearto" size={22} color="black" style={styles.text} />
+                </TouchableOpacity>
+                }
+
+                             {/* if para 1 like  o  x likeS */}
+             {this.state.cantidadDeLikes == 1 ?
+             <Text style={styles.text}>{this.state.cantidadDeLikes} like</Text>
+                    :
+            <Text style={styles.text}>{this.state.cantidadDeLikes} likes</Text>
              }
+
 
             
          {auth.currentUser.email == this.props.dataPost.datos.owner && 
@@ -114,88 +124,79 @@ import React, { Component } from 'react';
  }
 
  const styles = StyleSheet.create({
-     formContainer:{
-         paddingHorizontal:10,
-         marginTop: 20,
-     },
-     input:{
-         height:20,
-         paddingVertical:15,
-         paddingHorizontal: 10,
-         borderWidth:1,
-         borderColor: '#ccc',
-         borderStyle: 'solid',
-         borderRadius: 6,
-         marginVertical:10,
-     },
-     button:{
-        backgroundColor:'darkred',
-        paddingHorizontal: 10,
-        paddingVertical: 6,
-        textAlign: 'center',
-        borderRadius:4, 
-        marginTop:4,
-        marginBottom:4,
-
-    },
-    deletebutton:{
-        backgroundColor:'lightgrey',
-        paddingHorizontal: 10,
-        paddingVertical: 6,
-        textAlign: 'center',
-        borderRadius:4, 
-        marginTop:4,
-        marginBottom:4,
-
-    },
-    unlike:{
-        backgroundColor:'darkred',
-        paddingHorizontal: 10,
-        paddingVertical: 6,
-        textAlign: 'center',
-        borderRadius:4, 
-        marginTop:4,
-        marginBottom:4,
-
+    formContainer:{
+        paddingHorizontal:10,
+        marginTop: 20,
+        
     },
 
-    like:{
-        backgroundColor:'lightgrey',
-        paddingHorizontal: 10,
-        paddingVertical: 6,
-        textAlign: 'center',
-        borderRadius:4,
-        marginTop:4,
-        marginBottom:4,
-    },
+    button:{
+       backgroundColor:'rgb(228, 33, 33)',
+       paddingHorizontal: 10,
+       paddingVertical: 6,
+       textAlign: 'center',
+       borderRadius:4, 
+       marginTop:4,
+       marginBottom:4,
+   },
+   deletebutton:{
+       backgroundColor:'lightgrey',
+       paddingHorizontal: 10,
+       paddingVertical: 6,
+       textAlign: 'center',
+       borderRadius:4, 
+       marginTop:4,
+       marginBottom:4,
+   },
+   unlike:{
+       backgroundColor:'rgb(228, 33, 33)',
+       paddingHorizontal: 10,
+       paddingVertical: 6,
+       textAlign: 'center',
+       borderRadius:4, 
+       marginTop:4,
+       marginBottom:4,
+   },
+   like:{
+       backgroundColor:'lightgrey',
+       paddingHorizontal: 10,
+       paddingVertical: 6,
+       textAlign: 'center',
+       borderRadius:4,
+       marginTop:4,
+       marginBottom:4,
+   },
+   textButton:{
+       color: 'white'
+   },
+   deletetextButton:{
+       color: 'rgb(228, 33, 33)'
+   },
+    unPostContainer:{
+       flex: 1,
+       backgroundColor: '#ffffff',
+       borderRadius: 6,
+       marginHorizontal: 20,
+       padding: 5,
+       marginVertical: 5,
+       width:'70%',
+       alignSelf:'center'
+   },
+   image: {
+       height: 200,
+       width: '100%',
+       alignContent:"flex-start",
 
-
-    textButton:{
-        color: 'white'
-    },
-    deletetextButton:{
-        color: 'darkred'
-    },
-     unPostContainer:{
-        flex: 1,
-        backgroundColor: '#ffffff',
-        borderRadius: 6,
-        marginHorizontal: 20,
-        padding: 5,
-        marginVertical: 5
-    },
-
-    image: {
-        height: 100,
-        width: "100%",
-        alignContent:"flex-start"
-    
-    },
-    textoPost:{
-        textAlign:"center",
-        fontSize:"18px",
-        fontStyle:"bold"
-    }
- })
-
+   
+   },
+   textoPost:{
+       textAlign:"center",
+       fontSize:"18px",
+       fontStyle:"bold"
+   },
+   text:{
+    margin:10,
+    textAlign:'center'
+   }
+})
  export default Post;

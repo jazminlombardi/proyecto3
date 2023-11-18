@@ -61,6 +61,8 @@ import { TouchableWithoutFeedback } from 'react-native-web';
                     source = {require('/assets/logo.png')}
                     resizeMode= "center"
                 />
+                <Text style={styles.titulo}>Registrate</Text>
+
                 <TextInput
                      style={styles.input}
                      onChangeText={(text)=>this.setState({email: text})}
@@ -105,6 +107,16 @@ import { TouchableWithoutFeedback } from 'react-native-web';
 
 
  const styles = StyleSheet.create({
+
+    titulo:{
+        padding: 10,
+        textAlign: 'left',
+        color: 'black',
+        fontSize: 30,
+        fontWeight: 'bold',
+        margin: 10,
+    },
+
     formContainer:{
          paddingHorizontal:10,
          marginTop: 20,
@@ -143,16 +155,14 @@ import { TouchableWithoutFeedback } from 'react-native-web';
         alignItems: 'center', 
     },
 
-     input:{
-         height:20,
-         paddingVertical:15,
-         paddingHorizontal: 10,
-         borderWidth:1,
-         borderColor: '#ccc',
-         borderStyle: 'solid',
-         borderRadius: 6,
-         marginVertical:10,
-     },
+    input:{
+        height:20,
+        paddingVertical:15,
+        paddingHorizontal: 10,
+        backgroundColor:"white",
+        borderRadius: 6,
+        marginVertical:10,
+    },
      button:{
         backgroundColor:'darkred',
         paddingHorizontal: 10,

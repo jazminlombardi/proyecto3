@@ -75,6 +75,7 @@ class PostInProfile extends Component {
         return(
 
             <View style={styles.unPostContainer}>
+            <View style={styles.contenido}>
 
                 <Text>{this.props.dataPost.datos.owner}</Text>
                 <Image
@@ -83,7 +84,6 @@ class PostInProfile extends Component {
                     resizeMode= "center"
                 />
                 <Text>{this.props.dataPost.datos.textoPost}</Text>
-                <Text>Likes: {this.state.cantidadDeLikes}</Text>
 
 
                 {this.state.like ? 
@@ -95,6 +95,12 @@ class PostInProfile extends Component {
                     <AntDesign name="hearto" size={22} color="black" />
                 </TouchableOpacity>
                 }
+            {/* if para 1 like  o  x likeS */}
+             {this.state.cantidadDeLikes == 1 ?
+             <Text>{this.state.cantidadDeLikes} like</Text>
+                    :
+            <Text>{this.state.cantidadDeLikes} likes</Text>
+             }
 
                
             {auth.currentUser.email == this.props.dataPost.datos.owner && 
@@ -104,6 +110,8 @@ class PostInProfile extends Component {
                 
                  } 
             </View>
+            </View>
+
             
             
         )
@@ -114,11 +122,14 @@ const styles = StyleSheet.create({
     //CONTENEDOR GENERAL
     unPostContainer:{
         flex: 1,
-        backgroundColor: '#ffffff',
+        backgroundColor: 'rgb(235, 235, 235)',
         borderRadius: 6,
         marginHorizontal: 20,
         padding: 5,
         marginVertical: 5
+    },
+    contenido:{
+        margin:5
     },
 
     image: {
@@ -127,15 +138,19 @@ const styles = StyleSheet.create({
     
     },
     button:{
-        backgroundColor:'darkred',
+        backgroundColor:'rgb(228, 33, 33)',
         paddingHorizontal: 10,
         paddingVertical: 6,
         textAlign: 'center',
         borderRadius:4, 
+        margin:5
+
 
     },
     textButton:{
-        color: 'white'
+        color: 'white',
+        margin:5
+
     },
 
 })
