@@ -6,10 +6,11 @@ import Post from "../../components/Post/Post"
 
 
 class MiPerfil extends Component {
-    constructor() {
+    constructor(props) {
         super();
         this.state = {
             posts: [], // Initialize posts as an empty array
+/*             cantidadDePosts: this.props.datos.posts.length, */
         };
     }
 
@@ -50,13 +51,11 @@ render() {
                 <Text>Logout</Text>
             </TouchableOpacity>
             <Text style={styles.userInfoText}>NOMBRE DE USUARIO: </Text>
-            <Text style={styles.userInfoText}>EMAIL:</Text>
+            <Text style={styles.userInfoText}>EMAIL:{/* {this.props.datos.owner} */}</Text>
             <Text style={styles.bio}>BIOGRAFÍA</Text>
-            <Image source={{ uri: '' }} style={styles.profileImage} />
-            <Text style={styles.userInfoText}>CANTIDAD DE POSTEOS: </Text>
-            <TouchableOpacity onPressOut={() => this.borrar()} style={styles.deleteBtn}>
-                <Text>BORRAR POSTEO</Text>
-            </TouchableOpacity>
+            <Image source={{ url: '' }} style={styles.profileImage} />
+            <Text style={styles.userInfoText}>CANTIDAD DE POSTEOS:{/* {this.state.cantidadDePosts} */} </Text>
+
             <Text style={styles.postList}>Lista de posteos creados</Text>
 
             <FlatList

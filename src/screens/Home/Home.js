@@ -50,16 +50,10 @@
                     resizeMode= "center"
                 />
                  <Text style={styles.screenTitle} >HOME</Text>
-                 <TouchableOpacity onPress={()=>this.logout()}>
+                 <TouchableOpacity style={styles.button} onPress={()=>this.logout()}>
                      <Text style={styles.logout}>Logout</Text>
                  </TouchableOpacity>
-            {/* Botón para ir a la pantalla de registro */}
-                <TouchableOpacity
-                    style={styles.button}
-                    onPress={() => this.props.navigation.navigate('Register')}>
 
-                     <Text style={styles.buttonText}>Ir a Registro</Text>
-                 </TouchableOpacity>
 
             {/* Botón para ir a la pantalla de log in */}
 
@@ -93,8 +87,7 @@
     },
 
     logout:{
-        marginLeft: 20,
-        color: 'black'
+        color: 'white'
     },
     title:{
         fontSize: 20,

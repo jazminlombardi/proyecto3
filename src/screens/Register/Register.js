@@ -90,9 +90,9 @@ import { TouchableWithoutFeedback } from 'react-native-web';
             </View>
             
             <View style={styles.segundaSeccion}>
-                <Text>Already have an account?</Text>
-                <TouchableOpacity onPress={ () => this.props.navigation.navigate('Login')}>
-                   <Text style={styles.loginText}>Login</Text>
+                <Text style={styles.text} >Already have an account?</Text>
+                <TouchableOpacity style={styles.button} onPress={ () => this.props.navigation.navigate('Login')}>
+                   <Text style={styles.textButton}>Login</Text>
                 </TouchableOpacity>
             </View>
             
@@ -113,6 +113,12 @@ import { TouchableWithoutFeedback } from 'react-native-web';
     right:{
         flex: 1,
         justifyContent: 'center',
+    },
+    text:{
+        paddingTop:20,
+        paddingBottom:7,
+        color:"darkred"
+
     },
     firstBox:{
         backgroundColor: 'white',
@@ -148,10 +154,11 @@ import { TouchableWithoutFeedback } from 'react-native-web';
          marginVertical:10,
      },
      button:{
-        height:40,
-        width:"auto",
         backgroundColor:'darkred',
-        borderRadius:8, 
+        paddingHorizontal: 10,
+        paddingVertical: 6,
+        textAlign: 'center',
+        borderRadius:4, 
      },
      textButton:{
          color: 'white'
@@ -163,7 +170,8 @@ import { TouchableWithoutFeedback } from 'react-native-web';
     footerText: {
         textAlign: 'center',
         fontSize: 13,
-        color: 'black'
+        color: 'darkred',
+        paddingTop:10,
     },
 
  })

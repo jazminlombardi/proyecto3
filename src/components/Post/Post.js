@@ -44,7 +44,7 @@ import React, { Component } from 'react';
 
      unlike(){
          //Quita un email en la propiedad like del post.
-         db.collection('posts').doc(this.props.dataPost.id).update({
+         db.collection('posts').doc(this.props.dataPost.id).delete({
              likes:firebase.firestore.FieldValue.arrayRemove(auth.currentUser.email)
          })
          .then( res => this.setState({
@@ -99,9 +99,10 @@ import React, { Component } from 'react';
              <TouchableOpacity onPress={()=>this.unLike()}>
                  <AntDesign name="heart" size={22} color="red" />
              </TouchableOpacity>
+             
              :
              <TouchableOpacity onPress={()=>this.likear()}>
-                 <AntDesign name="hearto" size={22} color="black" />
+                 <AntDesign name="heart" size={22} color="black" />
              </TouchableOpacity>
              }
 
