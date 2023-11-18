@@ -81,7 +81,7 @@ render() {
                 keyExtractor={(unPost) => unPost.id}
                 renderItem={({ item }) => <PostInProfile dataPost={item} />}
                 style={styles.postList}
-                numColumns={3}
+                numColumns={5}
                 columnWrapperStyle={styles.row}
             />
             

@@ -1,5 +1,5 @@
 import react, { Component } from 'react';
-import {TextInput, TouchableOpacity, View, Text, StyleSheet, FlatList, Image} from 'react-native';
+import {TextInput, TouchableOpacity, View, Text, StyleSheet, FlatList, Image, ScrollView} from 'react-native';
 import { db, auth } from '../../firebase/config';
 import { AntDesign } from '@expo/vector-icons';
 import firebase from 'firebase';
@@ -74,7 +74,7 @@ class PostInProfile extends Component {
 
         return(
 
-            <View style={styles.unPostContainer}>
+            <ScrollView style={styles.unPostContainer}>
             <View style={styles.contenido}>
 
                 <Text>{this.props.dataPost.datos.owner}</Text>
@@ -110,7 +110,7 @@ class PostInProfile extends Component {
                 
                  } 
             </View>
-            </View>
+            </ScrollView>
 
             
             

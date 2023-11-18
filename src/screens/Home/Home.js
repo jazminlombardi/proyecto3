@@ -117,11 +117,8 @@ import { ScrollView } from 'react-native-web';
             // paddingBottom: 5,
             // width: 50
             alignSelf: "center",
-            height: 80,
-            width: "20%",
-            backgroundColor: "white",
-            borderRadius: 10,
-            marginHorizontal: 100,
+            height: "10%",
+            width:"20%",
       }
 
     

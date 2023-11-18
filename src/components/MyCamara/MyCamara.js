@@ -52,7 +52,7 @@ class MyCamera extends Component{
         fetch(this.state.urlInternaFoto)
             .then( res => res.blob())
             .then( image => {
-                const ruta = storage.ref(`photos/${Date.now()}.jpg`); //storage retorna un Objeto Literal
+                const ruta = storage.ref(`photo/${Date.now()}.jpg`); //storage retorna un Objeto Literal
                 ruta.put( image )
                     .then( () => {
                         ruta.getDownloadURL() //la url de guardado en internet de la foto.
@@ -74,6 +74,8 @@ class MyCamera extends Component{
 
 
     render(){
+        console.log(this.state.photo)
+
         //El return tiene que mostrar la cámara o el preview de la foto con las opciones de cancelar o confirmar.
         return(
             <View style={ styles.container}>
