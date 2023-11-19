@@ -85,10 +85,11 @@ class SearchResults extends Component {
                         keyExtractor={ unUser => unUser.id }
                         renderItem=
                         { ({item}) =>
-                        <View style={styles.cadaResult}>
-                            <Image style={styles.profileImage}source={item.datos.profileImage} />
-                            <Text style={styles.usuario}>{item.datos.owner}</Text> 
-                        </View>
+
+                        <TouchableOpacity style={styles.cadaResult} onPress={()=>this.props.navigation.navigate('OtroPerfil', {mailUser: item.datos.owner})} activeOpacity={0.7}>
+                            <Image style={styles.profileImage} />
+                            <Text style={styles.usuario}>{item.datos.userName}</Text> 
+                        </TouchableOpacity>
                         }
                         style= {styles.listaPosts}
                     />

@@ -1,8 +1,7 @@
  import react, { Component } from 'react';
  import {TextInput, TouchableOpacity, View, Text, StyleSheet, FlatList, Image} from 'react-native';
  import { db, auth } from '../../firebase/config';
- import PostForm from '../PostForm/PostForm';
- import Post from '../../components/Post/Post';
+import Post from '../../components/Post/Post';
 import { ScrollView } from 'react-native-web';
 
  class Home extends Component {

@@ -19,7 +19,8 @@ class PostForm extends Component {
         //Crear la colección Users
         db.collection('posts').add({
             owner: owner, //auth.currentUser.email,
-            textoPost: textoPost, //this.state.textoPost,
+/*             userName: userName,
+ */            textoPost: textoPost, //this.state.textoPost,
             fotoUrl:fotoUrl,
             likes:[],
             createdAt: createdAt //Date.now(), 
@@ -60,7 +61,7 @@ class PostForm extends Component {
                     <Text style={styles.textButton}>Postear</Text>    
                 </TouchableOpacity>
                     :
-                    <TouchableOpacity style={styles.button} onPress={<Text>No podes postear</Text>}>
+                    <TouchableOpacity style={styles.button} >
                     <Text style={styles.textButton}>Postear</Text>    
                     </TouchableOpacity>
                 }

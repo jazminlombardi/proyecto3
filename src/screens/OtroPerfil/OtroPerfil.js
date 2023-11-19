@@ -3,7 +3,7 @@ import { db, auth } from '../../firebase/config';
 import { TextInput, TouchableOpacity, View, Text, StyleSheet, FlatList,Image, ScrollView } from 'react-native';
 import Post from '../../components/Post/Post';
 
-class SuPerfil extends Component{
+class OtroPerfil extends Component{
     constructor(props){
         super(props)
         this.state={
@@ -108,4 +108,4 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
 });
-export default SuPerfil;
+export default OtroPerfil;
