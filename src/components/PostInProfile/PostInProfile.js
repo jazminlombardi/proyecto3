@@ -9,7 +9,9 @@ class PostInProfile extends Component {
         super(props)
         this.state={
             like: false,
-            cantidadDeLikes: this.props.dataPost.datos.likes.length
+            cantidadDeLikes: this.props.dataPost.datos.likes.length,
+            cantidadDeComentarios: this.props.dataPost.datos.comentarios ? this.props.dataPost.datos.comentarios.length : 0,
+
         }
     }
 
@@ -74,33 +76,42 @@ class PostInProfile extends Component {
 
         return(
 
-            <ScrollView style={styles.unPostContainer}>
+            <View style={styles.unPostContainer}>
             <View style={styles.contenido}>
 
-                <Text>{this.props.dataPost.datos.owner}</Text>
+                <Text style={styles.text}>{this.props.dataPost.datos.owner}</Text>
                 <Image
                     style={styles.image}
                     source = {this.props.dataPost.datos.fotoUrl}
                     resizeMode= "center"
                 />
-                <Text>{this.props.dataPost.datos.textoPost}</Text>
+                <Text style={styles.text}>{this.props.dataPost.datos.textoPost}</Text>
 
 
                 {this.state.like ? 
                 <TouchableOpacity onPress={()=>this.unLike()}>
-                    <AntDesign name="heart" size={22} color="red" />
+                    <AntDesign name="heart" size={22} color="red" style={styles.text}/>
                 </TouchableOpacity>
                 :
                 <TouchableOpacity onPress={()=>this.likear()}>
-                    <AntDesign name="hearto" size={22} color="black" />
+                    <AntDesign name="hearto" size={22} color="black" style={styles.text}/>
                 </TouchableOpacity>
                 }
             {/* if para 1 like  o  x likeS */}
              {this.state.cantidadDeLikes == 1 ?
-             <Text>{this.state.cantidadDeLikes} like</Text>
+             <Text style={styles.text}>{this.state.cantidadDeLikes} like</Text>
                     :
-            <Text>{this.state.cantidadDeLikes} likes</Text>
+            <Text style={styles.text}>{this.state.cantidadDeLikes} likes</Text>
              }
+
+                              {/* if para 1 coment  o  x comentS */}
+
+            {this.state.cantidadDeComentarios == 1 ? 
+            <Text style = {styles.text} >{this.state.cantidadDeComentarios} Comentario</Text>
+            :
+            <Text style = {styles.text} >{this.state.cantidadDeComentarios} Comentarios</Text>
+            }
+            
 
                
             {auth.currentUser.email == this.props.dataPost.datos.owner && 
@@ -110,7 +121,7 @@ class PostInProfile extends Component {
                 
                  } 
             </View>
-            </ScrollView>
+            </View>
 
             
             
@@ -124,13 +135,22 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: 'rgb(235, 235, 235)',
         borderRadius: 6,
-        marginHorizontal: 20,
-        padding: 5,
-        marginVertical: 5
+        paddingHorizontal: 50,
+        paddingVertical:5,
+        margin: 5,
+
     },
     contenido:{
-        margin:5
+        margin:5,
+        textAlign:'center',
+        justifyContent:'center',
+
+
     },
+    text:{
+        textAlign:'center'
+    },
+
 
     image: {
         height: 80,

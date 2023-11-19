@@ -47,22 +47,32 @@ class OtroPerfil extends Component{
 
         return(
             <ScrollView style={styles.container}>
-                <View style={styles.profileInfo}>
-                <Text style={styles.username}>{this.state.suInfo.userName}</Text>
-                <Text style={styles.bio}> Biografía:{this.state.suInfo.bio}</Text>
+                <Image
+                    style={styles.image}
+                    source = {require('/assets/logoblanco.png')}
+                    resizeMode= "center"
+                />
+                <Text style={styles.volverH} onPress={() => this.props.navigation.navigate("Home")} >
+                Volver a home
+                </Text>
+                <Text style={styles.volverB} onPress={() => this.props.navigation.navigate("SearchResults")}>
+                Volver a Buscador
+                </Text>
+{/*                 <Image source={{ uri: this.state.suInfo.profileImage}} style={styles.profileImage} />
+ */}                <View style={styles.profileInfo}>
+                <Text style={styles.userName}>{this.state.suInfo.userName} </Text>
+                <Text style={styles.posts}> Biografía:{this.state.suInfo.bio}</Text>
                 <Text style={styles.posts} >Cantidad de posts: {this.state.susPosts.length}</Text>
                 <Image style={styles.profileImage} source={{ uri: this.state.suInfo.profileImage }}/>
                 </View> 
 
-                <Text style={styles.sectionTitle}>Posteos:</Text>
+                <Text style={styles.sectionTitle}>Posteos de {this.state.suInfo.userName} </Text>
                 <FlatList
                     data={this.state.susPosts}
                     keyExtractor={(item) => item.id.toString()}
                     renderItem={({ item }) => <Post dataPost={item} navigation={this.props.navigation} />}
                 />
-                <Text onPress={() => this.props.navigation.navigate("TabNavigation")}>
-                Volver a home
-                </Text>
+
             
             </ScrollView>
 
@@ -70,6 +80,15 @@ class OtroPerfil extends Component{
     }
 }
 const styles = StyleSheet.create({
+    image:{
+        // height: 100,
+        // paddingBottom: 5,
+        // width: 50
+        alignSelf: "center",
+        height: "10%",
+        width:"20%",
+        margin:5,
+  },
     container: {
         backgroundColor: '#fff',
         padding: 20,
@@ -84,7 +103,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginBottom: 20,
     },
-    username: {
+    userName: {
         fontSize: 20,
         fontWeight: 'bold',
         marginBottom: 5,
@@ -92,20 +111,42 @@ const styles = StyleSheet.create({
     bio: {
         fontSize: 16,
         marginBottom: 5,
+        color:'black',
     },
     posts: {
         fontSize: 16,
         marginBottom: 15,
     },
     profileImage: {
-        width: 150,
-        height: 150,
-        borderRadius: 75,
+        width: 100,
+        height: 100,
+        marginBottom: 10,
+        justifyContent:'center',
+        backgroundColor:"lightgrey",
+        borderRadius: 50,
     },
     sectionTitle: {
         fontSize: 18,
         fontWeight: 'bold',
         marginBottom: 10,
+        textAlign:'center'
+    },
+    volverH:{
+        backgroundColor:'lightgrey',
+        color:'white',
+        padding:8,
+        borderRadius:30,
+        textAlign:'center',
+        justifyContent:'center'
+    },
+    volverB:{
+        backgroundColor:'rgb(244, 236, 236)',
+        color:'red',
+        padding:8,
+        margin:15,
+        borderRadius:30,
+        textAlign:'center',
+        justifyContent:'center'
     },
 });
 export default OtroPerfil;

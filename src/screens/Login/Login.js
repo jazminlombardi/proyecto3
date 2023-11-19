@@ -38,7 +38,7 @@ import react, { Component } from 'react';
                     source = {require('/assets/logo.png')}
                     resizeMode= "center"
                 />
-                 <Text>Login</Text>
+                 <Text style={styles.titulo}>Login</Text>
                  <TextInput
                      style={styles.input}
                      onChangeText={(text)=>this.setState({email: text})}
@@ -57,8 +57,9 @@ import react, { Component } from 'react';
                  <TouchableOpacity style={styles.button} onPress={()=>this.login(this.state.email, this.state.password)}>
                      <Text style={styles.textButton}>Ingresar</Text>    
                  </TouchableOpacity>
-                 <TouchableOpacity onPress={ () => this.props.navigation.navigate('Register')}>
-                    <Text>No tengo cuenta. Registrarme.</Text>
+                 <Text style={styles.preg}>No tenes cuenta?</Text>
+                 <TouchableOpacity onPress={ () => this.props.navigation.navigate('Register')} style={styles.registrate}>
+                    <Text >Registrate</Text>
                  </TouchableOpacity>
              </View>
          )
@@ -66,22 +67,29 @@ import react, { Component } from 'react';
  }
 
  const styles = StyleSheet.create({
+    titulo:{
+        padding: 10,
+        textAlign: 'left',
+        color: 'black',
+        fontSize: 30,
+        fontWeight: 'bold',
+        margin: 10,
+    },
+
      formContainer:{
          paddingHorizontal:10,
          marginTop: 20,
      },
      input:{
-         height:20,
-         paddingVertical:15,
-         paddingHorizontal: 10,
-         borderWidth:1,
-         borderColor: '#ccc',
-         borderStyle: 'solid',
-         borderRadius: 6,
-         marginVertical:10,
+        height:20,
+        paddingVertical:15,
+        paddingHorizontal: 10,
+        backgroundColor:"white",
+        borderRadius: 6,
+        marginVertical:10,
      },
      button:{
-         backgroundColor:'darkred',
+         backgroundColor:'red',
          paddingHorizontal: 10,
          paddingVertical: 6,
          textAlign: 'center',
@@ -95,6 +103,21 @@ import react, { Component } from 'react';
         width: "100%",
     
     },
+    preg:{
+        margin:5,
+        marginTop:20
+    },
+    registrate:{
+        backgroundColor:'white',
+        paddingHorizontal: 10,
+        paddingVertical: 6,
+        textAlign: 'center',
+        borderRadius:4,
+        borderWidth:0.5, 
+        borderColor:'lightgrey' ,    
+    },
+    
+
 
  })
 

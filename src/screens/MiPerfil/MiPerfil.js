@@ -59,10 +59,15 @@ render() {
 
     return (
         <View style={styles.container}>
+                <Image
+                    style={styles.image}
+                    source = {require('/assets/logoblanco.png')}
+                    resizeMode= "center"
+                />
             <Image source={{ uri: this.state.infoUser.profileImage  }} style={styles.profileImage} />
 
             <Text style={styles.userName}>{this.state.infoUser.userName} </Text>
-            <Text style={styles.bio}>BIOGRAFÍA {this.state.infoUser.bio} </Text>
+            <Text style={styles.userName}>BIOGRAFÍA: {this.state.infoUser.bio} </Text>
             <Text style={styles.userInfoText}>email: {this.state.infoUser.owner} </Text>
 
             <Text style={styles.userInfoText}>CANTIDAD DE POSTEOS:{this.state.posts.length} </Text>
@@ -76,14 +81,16 @@ render() {
             </TouchableOpacity>
 
             <Text style={styles.header}>Mis Posts</Text>
+            <ScrollView  style={styles.scroll}>
             <FlatList
                 data={this.state.posts}
                 keyExtractor={(unPost) => unPost.id}
                 renderItem={({ item }) => <PostInProfile dataPost={item} />}
                 style={styles.postList}
-                numColumns={5}
+                numColumns={3}
                 columnWrapperStyle={styles.row}
             />
+            </ScrollView>
             
         </View>
     );
@@ -91,6 +98,15 @@ render() {
 
 
 const styles = StyleSheet.create({
+    image:{
+        // height: 100,
+        // paddingBottom: 5,
+        // width: 50
+        alignSelf: "center",
+        height: "10%",
+        width:"20%",
+        margin:10,
+  },
         container: {
             alignItems: 'center',
             justifyContent: 'center',
@@ -130,10 +146,7 @@ const styles = StyleSheet.create({
             color: 'black',
             marginBottom: 5,
         },
-        bio:{
-            color: 'black',
-            marginBottom: 5,
-        },
+
         userName: {
             color: 'black',
             padding: 5,
@@ -162,8 +175,9 @@ const styles = StyleSheet.create({
             marginTop: 20,
             display:"flex",
             flexDirection:"row",
-            width:"auto"
+            flexWrap:'wrap'
         },
+
         post: {
             borderWidth: 1,
             borderColor: 'rgb(228, 33, 33)',

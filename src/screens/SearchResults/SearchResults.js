@@ -1,4 +1,4 @@
-import react, { Component } from 'react';
+import React, { Component } from 'react';
 import {Image, TextInput, TouchableOpacity, View, Text, StyleSheet, FlatList, ScrollView} from 'react-native';
 import { db, auth } from '../../firebase/config';
 
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
         marginBottom: 25
     },
     input:{
-        width: '65%',
+        width: '100%',
         borderColor: 'lightgrey',
         borderWidth:5,
         borderRadius: 6,
@@ -154,12 +154,17 @@ const styles = StyleSheet.create({
     },
 
     image:{
-        height: 100,
-        paddingBottom: 5,
+        // height: 100,
+        // paddingBottom: 5,
+        // width: 50
+        alignSelf: "center",
+        height: "40%",
+        width:"40%",
   },
   text:{
     textAlign:'center'
   },
+
 
 
 

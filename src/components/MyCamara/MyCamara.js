@@ -92,6 +92,10 @@ class MyCamera extends Component{
                                 <TouchableOpacity style={styles.cancelButton} onPress={()=>this.cancelar()}>
                                     <Text style={styles.textButton}>Cancelar</Text>
                                 </TouchableOpacity>
+                                <View style={styles.atencion}>
+                                <Text style={styles.atencion}>Atencion!</Text>
+                                <Text style={styles.atencion}>Clickear ACEPTAR para guardar la foto correctamente. Clickear CANCELAR para tomarla de nuevo</Text>
+                                </View>
                                 <TouchableOpacity style={styles.confirmButton} onPress={()=>this.guardarLaFotoEnStorage()}>
                                     <Text style={styles.textButton}>Aceptar</Text>
                                 </TouchableOpacity>
@@ -124,15 +128,17 @@ class MyCamera extends Component{
 const styles = StyleSheet.create({
     container:{
         height:"60vh",
-        width:"70vh",
         marginBottom: 20,
         marginHorizontal:5,
         padding: 15,
+        width:'100%',
+
         
     },
     cameraBody: {
       marginTop: 20,
       marginBottom: 10,
+      width:'100%',
       height:"40vh",
       borderRadius:"10px"
 
@@ -143,6 +149,8 @@ const styles = StyleSheet.create({
         paddingVertical: 6,
         textAlign: 'center',
         borderRadius:4, 
+        width:'100%',
+
 
     },
     textButton:{
@@ -151,7 +159,7 @@ const styles = StyleSheet.create({
     },
     confirm:{
         flexDirection:"row",
-        justifyContent: "space-between"
+        justifyContent: "space-between",
     },
     confirmButton:{
         backgroundColor:'rgb(228, 33, 33)',
@@ -166,7 +174,15 @@ const styles = StyleSheet.create({
         paddingVertical: 6,
         textAlign: 'center',
         borderRadius:4, 
-    }
+    },
+    atencion:{
+        display:'flex',
+        flexDirection:'column',
+        color:'red',
+        textAlign:'center'
+
+
+    },
 })
 
 export default MyCamera

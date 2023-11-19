@@ -37,6 +37,7 @@ import { ScrollView } from 'react-native-web';
 
      logout(){
          auth.signOut();
+         this.props.navigation.navigate('Login')
           //Redirigir al usuario a la home del sitio.
          // this.props.navigation.navigate('Login')
      }
@@ -61,9 +62,10 @@ import { ScrollView } from 'react-native-web';
                  <Text style={styles.title}> Feed</Text>
 
                  <FlatList
+                    style={styles.lista}
                     data={this.state.posts}
                     keyExtractor={ unPost => unPost.id }
-                    renderItem={ ({item}) => <Post dataPost = {item} />  }
+                    renderItem={ ({item}) => <Post dataPost = {item} navigation={this.props.navigation} />  }
                 /> 
 
                
@@ -77,7 +79,11 @@ import { ScrollView } from 'react-native-web';
 
     //CONTENEDOR GENERAL
     home:{
-        backgroundColor:"f1f1f1"
+        backgroundColor:"f1f1f1",
+        
+    },
+    lista:{
+        height:'1000px'
     },
 
     screenTitle:{

@@ -27,15 +27,15 @@ class Menu extends Component {
             <Tab.Screen name='MiPerfil' component={MiPerfil} options={{ 
               tabBarIcon:() => <FontAwesome name="user" size = {15} color="black"/>,
                     headerShown:false,
-                    title: 'User'}}/>
+                    title: 'Mi Perfil'}}/>
             <Tab.Screen name='PostForm' component={PostForm} options={{ 
               tabBarIcon:() => <FontAwesome name="camera" size = {15} color="black"/>,
                     headerShown:false,
-                    title: 'New Post'}}/>
+                    title: 'Nuevo Post'}}/>
             <Tab.Screen name='SearchResults' component={SearchResults} options={{ 
               tabBarIcon:() => <FontAwesome name="search" size = {15} color="black"/>,
                     headerShown:false,
-                    title: 'Search' }}/>
+                    title: 'Buscar' }}/>
         </Tab.Navigator>
     );
   }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {db, auth } from '../../firebase/config';
 import MyCamera from '../../components/MyCamara/MyCamara';
-import {TextInput, TouchableOpacity, View, Text, StyleSheet} from 'react-native';
+import {TextInput, TouchableOpacity, View, Text, StyleSheet, Image} from 'react-native';
 
 class PostForm extends Component {
     constructor(){
@@ -46,13 +46,20 @@ class PostForm extends Component {
 
     render(){
         return(
+            <View>
+                <Image
+                    style={styles.image}
+                    source = {require('/assets/logo.png')}
+                    resizeMode= "center"
+                />
             <View style={styles.formContainer}>
+
                 <Text style={styles.newpost}>New Post</Text>
-                <MyCamera style={styles.camara} trearUrlDelaFoto={ url => this.trearUrlDelaFoto(url) }/>
+                <MyCamera style={styles.camara} trearUrlDelaFoto={ (url) => this.trearUrlDelaFoto(url) }/>
                 <TextInput
                     style={styles.input}
                     onChangeText={(text)=>this.setState({textoPost: text})}
-                    placeholder='Escribir un comentario...'
+                    placeholder='Escribir un pie de foto...'
                     keyboardType='default'
                     value={this.state.textoPost}
                     />
@@ -75,14 +82,26 @@ class PostForm extends Component {
                 )}
 
             </View>
+            </View>
+
         )
     }
 }
 
 const styles = StyleSheet.create({
+    image:{
+        // height: 100,
+        // paddingBottom: 5,
+        // width: 50
+        alignSelf: "center",
+        height: "10%",
+        width:"20%",
+  },
     camara:{
         marginBottom: 0,
         paddingBottom: 10,
+        width:'100%',
+
         padding:0, 
         justifyContent:"center",
     },
@@ -93,13 +112,12 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     formContainer:{
-        height:"auto",
+        height:'fit-content',
         paddingHorizontal:5,
-        marginTop: 60,
+        marginTop: 5,
         marginHorizontal:30,
         padding: 25,
         borderRadius: 6,
-        marginLeft: 20,
         backgroundColor: 'white'
     },
     input:{

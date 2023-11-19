@@ -3,6 +3,8 @@ import React, { Component } from 'react';
  import { db, auth } from '../../firebase/config';
  import { AntDesign } from '@expo/vector-icons';
  import firebase from 'firebase';
+ import { FontAwesome } from '@expo/vector-icons'
+
 
  class Post extends Component {
 
@@ -12,6 +14,7 @@ import React, { Component } from 'react';
          this.state = {
              like: false,
              cantidadDeLikes: this.props.dataPost.datos.likes.length,
+             cantidadDeComentarios: this.props.dataPost.datos.comentarios ? this.props.dataPost.datos.comentarios.length : 0,
 
          }
      }
@@ -45,7 +48,7 @@ import React, { Component } from 'react';
 
      unlike(){
          //Quita un email en la propiedad like del post.
-         db.collection('posts').doc(this.props.dataPost.id).delete({
+         db.collection('posts').doc(this.props.dataPost.id).update({
              likes:firebase.firestore.FieldValue.arrayRemove(auth.currentUser.email)
          })
          .then( res => this.setState({
@@ -72,29 +75,28 @@ import React, { Component } from 'react';
 
              <View style={styles.unPostContainer}>
 
+             <View style={styles.postheader}>
              <TouchableOpacity onPress={()=>this.props.navigation.navigate('OtroPerfil', {mailUser: this.props.dataPost.datos.owner})} activeOpacity={0.7}>
                 <Text style={styles.text}>{this.props.dataPost.datos.owner}</Text>                     
              </TouchableOpacity>
+             </View>
+
+             <View style={styles.postimg}>
+
              <Image
                  style={styles.image}
                  source = {this.props.dataPost.datos.fotoUrl}
                  resizeMode= "center"
              />
+             </View>
+
              <Text style= {styles.textoPost}>{this.props.dataPost.datos.textoPost}</Text>
 
-             {/* if para like y unlike */}
-{/*              {this.state.like ? 
-             <TouchableOpacity style={styles.unlike} onPress={()=>this.unLike()} activeOpacity={0.7}>
-                <Text style={styles.textButton}>Quitar like</Text>                     
-             </TouchableOpacity>
-             
-             :
-             <TouchableOpacity style={styles.like} onPress={()=>this.likear()} activeOpacity={0.7}>
-                <Text style={styles.textButton}>Like</Text>    
-             </TouchableOpacity>
-             } */}
+             <View style={styles.piepost}>
+
+
                 {this.state.like ? 
-                <TouchableOpacity onPress={()=>this.unike()}>
+                <TouchableOpacity onPress={()=>this.unlike()}>
                     <AntDesign name="heart" size={22} color="red" style={styles.text} />
                 </TouchableOpacity>
                 :
@@ -110,17 +112,26 @@ import React, { Component } from 'react';
             <Text style={styles.text}>{this.state.cantidadDeLikes} likes</Text>
              }
 
-            <Text style = {styles.commentCount} >Comentarios</Text>
+                             {/* if para 1 coment  o  x comentS */}
+
+
+            {this.state.cantidadDeComentarios == 1 ? 
+            <Text style = {styles.commentCount} >{this.state.cantidadDeComentarios} Comentario</Text>
+            :
+            <Text style = {styles.commentCount} >{this.state.cantidadDeComentarios} Comentarios</Text>
+            }
+
                     <TouchableOpacity style={styles.commentButton} onPress={() => this.props.navigation.navigate(
                         'Comment', { id: this.props.dataPost.id })}>
-                        <Text>Comment</Text>
+                        <Text>Agregar nuevo comentario</Text>
                     </TouchableOpacity>
+            </View>
 
 
             
          {auth.currentUser.email == this.props.dataPost.datos.owner && 
              <TouchableOpacity style={styles.deletebutton} onPress={()=>this.deletePost()} activeOpacity={0.7}>
-                 <Text style={styles.deletetextButton}>Delete post</Text>
+                 <Text style={styles.textButton}>Delete post</Text>
              </TouchableOpacity>
               } 
              
@@ -147,7 +158,7 @@ import React, { Component } from 'react';
        marginBottom:4,
    },
    deletebutton:{
-       backgroundColor:'lightgrey',
+       backgroundColor:'red',
        paddingHorizontal: 10,
        paddingVertical: 6,
        textAlign: 'center',
@@ -176,9 +187,7 @@ import React, { Component } from 'react';
    textButton:{
        color: 'white'
    },
-   deletetextButton:{
-       color: 'rgb(228, 33, 33)'
-   },
+ 
     unPostContainer:{
        flex: 1,
        backgroundColor: '#ffffff',
@@ -193,8 +202,9 @@ import React, { Component } from 'react';
        height: 200,
        width: '100%',
        alignContent:"flex-start",
+       margin:5,
 
-   
+
    },
    textoPost:{
        textAlign:"center",
@@ -204,6 +214,40 @@ import React, { Component } from 'react';
    text:{
     margin:10,
     textAlign:'center'
-   }
+   },
+
+   postheader:{
+    backgroundColor:'rgb(244, 236, 236)',
+    borderTopEndRadius: 6,
+    borderTopStartRadius: 6,
+    padding:8
+
+   },
+   commentButton:{
+    backgroundColor:'white',
+    color: 'rgb(228, 33, 33)',
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    textAlign: 'center',
+    borderRadius:4, 
+    marginTop:4,
+    marginBottom:4,
+
+   },
+   commentCount:{
+    paddingHorizontal: 7,
+   },
+
+   postimg:{
+    borderRadius:50,
+   },
+
+   piepost:{
+    backgroundColor:'rgb(244, 236, 236)',
+    borderBottomStartRadius: 6,
+    borderBottomEndRadius: 6,
+    padding:8
+   },
+
 })
  export default Post;
