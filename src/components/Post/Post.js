@@ -11,7 +11,8 @@ import React, { Component } from 'react';
 
          this.state = {
              like: false,
-             cantidadDeLikes: this.props.dataPost.datos.likes.length
+             cantidadDeLikes: this.props.dataPost.datos.likes.length,
+
          }
      }
 
@@ -108,6 +109,12 @@ import React, { Component } from 'react';
                     :
             <Text style={styles.text}>{this.state.cantidadDeLikes} likes</Text>
              }
+
+            <Text style = {styles.commentCount} >Comentarios</Text>
+                    <TouchableOpacity style={styles.commentButton} onPress={() => this.props.navigation.navigate(
+                        'Comment', { id: this.props.dataPost.id })}>
+                        <Text>Comment</Text>
+                    </TouchableOpacity>
 
 
             
