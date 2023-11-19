@@ -90,6 +90,7 @@ import react, { Component } from 'react';
      },
      button:{
          backgroundColor:'red',
+         backgroundColor:"red",
          paddingHorizontal: 10,
          paddingVertical: 6,
          textAlign: 'center',
