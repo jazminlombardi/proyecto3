@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {db, auth } from '../../firebase/config';
 import MyCamera from '../../components/MyCamara/MyCamara';
+import * as ImagePicker from 'expo-image-picker';
 import {TextInput, TouchableOpacity, View, Text, StyleSheet, Image} from 'react-native';
 
 class PostForm extends Component {
@@ -20,7 +21,7 @@ class PostForm extends Component {
         db.collection('posts').add({
             owner: owner, //auth.currentUser.email,
 /*             userName: userName,
- */            textoPost: textoPost, //this.state.textoPost,
+ */         textoPost: textoPost, //this.state.textoPost,
             fotoUrl:fotoUrl,
             likes:[],
             createdAt: createdAt //Date.now(), 
@@ -43,6 +44,23 @@ class PostForm extends Component {
         })
     }
 
+    async pickImage() {
+        try {
+          let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            aspect: [4, 3],
+            quality: 1,
+          });
+    
+          if (!result.cancelled) {
+            this.setState({ fotoUrl: result.uri });
+          }
+        } catch (e) {
+          console.log(e);
+        }
+      }
+
 
     render(){
         return(
@@ -55,7 +73,12 @@ class PostForm extends Component {
             <View style={styles.formContainer}>
 
                 <Text style={styles.newpost}>New Post</Text>
+                <TouchableOpacity onPress={() => this.pickImage()} style={styles.pickimage}>
+                    <Text>Subir imagen</Text>
+                </TouchableOpacity>
+
                 <MyCamera style={styles.camara} trearUrlDelaFoto={ (url) => this.trearUrlDelaFoto(url) }/>
+
                 <TextInput
                     style={styles.input}
                     onChangeText={(text)=>this.setState({textoPost: text})}
@@ -89,6 +112,16 @@ class PostForm extends Component {
 }
 
 const styles = StyleSheet.create({
+    pickimage:{
+        backgroundColor:'rgb(244, 236, 236)',
+        paddingHorizontal: 10,
+        paddingVertical: 6,
+        textAlign: 'center',
+        borderRadius:6, 
+        marginLeft: 13,
+        marginRight: 13,
+
+    },
     image:{
         // height: 100,
         // paddingBottom: 5,

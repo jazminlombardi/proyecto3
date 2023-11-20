@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
 
     },
     button:{
-        backgroundColor:'rgb(228, 33, 33)',
+        backgroundColor:'rgb(244, 236, 236)',
         paddingHorizontal: 10,
         paddingVertical: 6,
         textAlign: 'center',
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
 
     },
     textButton:{
-        color: 'white',
+        color: 'darkred',
         textAlign: "center"
     },
     confirm:{
