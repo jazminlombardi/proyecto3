@@ -39,6 +39,8 @@ class Comment extends Component{
               Volver a home
             </Text>
 
+          <View style={styles.comentscontainer}>
+
             {this.state.data.comentarios && this.state.data.comentarios.length > 0 ? (
               <View>
                 <FlatList
@@ -53,7 +55,7 @@ class Comment extends Component{
                 />
               </View>
             ) : (
-              <Text>No hay comentarios aún.</Text>
+              <Text style={styles.nohay}>No hay comentarios aún.</Text>
             )}
 
               <TextInput
@@ -67,6 +69,8 @@ class Comment extends Component{
                 <Text style={styles.textButton}>Comentar</Text>
               </TouchableOpacity>
           </View>
+          </View>
+
         );
       }
     }
@@ -78,7 +82,7 @@ const styles = StyleSheet.create({
   },
   commentContainer: {
     borderBottomWidth: 1,
-    borderBottomColor: '#CCCCCC',
+    borderBottomColor: 'lightgrey',
     paddingBottom: 10,
     margin: 10,
   },
@@ -92,6 +96,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginTop: 20,
+  },
+  comentscontainer:{
+    borderWidth:2,
+    borderRadius:6,
+    padding:10,
+    margin:5,
+    marginTop:10,
+    borderColor:'lightgrey'
   },
  
     input:{
@@ -116,13 +128,16 @@ const styles = StyleSheet.create({
  },
   
  volverH:{
-  backgroundColor:'lightgrey',
-  color:'white',
+  backgroundColor:'rgb(244, 236, 236)',
+  color:'darkred',
   padding:8,
   borderRadius:30,
   textAlign:'center',
   justifyContent:'center'
 },
+nohay:{
+  margin:5,
+}
 });
 
 export default Comment;
