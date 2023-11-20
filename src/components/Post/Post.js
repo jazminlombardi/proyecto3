@@ -22,6 +22,7 @@ import React, { Component } from 'react';
      componentDidMount() {
         //Chequear si el usuario está autenticado y luego ver si le gusta el post
         const user = auth.currentUser;
+
         if (user && this.props.dataPost.datos.likes.includes(user.email)) {
             this.setState({
                 like: true
@@ -71,12 +72,13 @@ import React, { Component } from 'react';
 
      render(){
          console.log(this.props)
+
          return (
 
              <View style={styles.unPostContainer}>
 
              <View style={styles.postheader}>
-             <Image source={{ uri: this.props.dataPost.datos.profileImage  }} style={styles.profileImage} />
+             <Image source={{ uri: this.props.dataPost.datos.profileImage   }} style={styles.profileImage} />
              <TouchableOpacity onPress={()=>this.props.navigation.navigate('OtroPerfil', {mailUser: this.props.dataPost.datos.owner})} activeOpacity={0.7}>
                 <Text style={styles.text}>{this.props.dataPost.datos.owner}</Text>                     
              </TouchableOpacity>
@@ -149,8 +151,8 @@ import React, { Component } from 'react';
         
     },
     profileImage: {
-        width: '30px',
-        height: '30px',
+        width: 30,
+        height: 30,
         backgroundColor:"lightgrey",
         borderRadius: 50,
         alignSelf:'center'

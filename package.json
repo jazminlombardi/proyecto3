@@ -15,15 +15,18 @@
     "@react-navigation/native-stack": "^6.9.17",
     "expo": "~49.0.15",
     "expo-camera": "~13.4.4",
+    "expo-image-crop": "^1.0.4",
+    "expo-image-manipulator": "~11.3.0",
+    "expo-image-picker": "~14.3.2",
     "expo-status-bar": "~1.6.0",
     "firebase": "^8.10.1",
+    "image-compressor": "^2.0.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.72.6",
     "react-native-safe-area-context": "4.6.3",
     "react-native-screens": "~3.22.0",
-    "react-native-web": "~0.19.6",
-    "expo-image-picker": "~14.3.2"
+    "react-native-web": "~0.19.6"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

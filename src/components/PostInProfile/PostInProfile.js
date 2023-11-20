@@ -1,5 +1,5 @@
 import react, { Component } from 'react';
-import {TextInput, TouchableOpacity, View, Text, StyleSheet, FlatList, Image, ScrollView} from 'react-native';
+import {TextInput, TouchableOpacity, View, Text, StyleSheet, Button, Image, Modal} from 'react-native';
 import { db, auth } from '../../firebase/config';
 import { AntDesign } from '@expo/vector-icons';
 import firebase from 'firebase';
@@ -9,6 +9,8 @@ class PostInProfile extends Component {
         super(props)
         this.state={
             like: false,
+            showModal: false,
+            deleteConfirmation: false, // Nueva bandera de estado
             cantidadDeLikes: this.props.dataPost.datos.likes.length,
             cantidadDeComentarios: this.props.dataPost.datos.comentarios ? this.props.dataPost.datos.comentarios.length : 0,
 
@@ -16,7 +18,6 @@ class PostInProfile extends Component {
     }
 
     componentDidMount(){
-        console.log("En PostInProfile")
         //Indicar si el post ya está likeado o no.
         if(this.props.dataPost.datos.likes.includes(auth.currentUser.email)){
             this.setState({
@@ -63,13 +64,17 @@ class PostInProfile extends Component {
     .catch( e => console.log(e))
    }
    
-    deletePost(){
-    db.collection('posts').doc(this.props.dataPost.id).delete()
-    .then( res => {
-        console.log('Post eliminado');
-    })
-    .catch( e => console.log(e))
-   }
+   deletePost() {
+    db.collection('posts')
+        .doc(this.props.dataPost.id)
+        .delete()
+        .then(res => {
+            console.log('Post eliminado');
+            this.setState({ showModal: false, deleteConfirmation: false }); // Actualizar ambos estados después de eliminar el post
+        })
+        .catch(e => console.log(e));
+}
+
 
     render(){
 
@@ -114,12 +119,30 @@ class PostInProfile extends Component {
             
 
                
-            {auth.currentUser.email == this.props.dataPost.datos.owner && 
-                <TouchableOpacity style={styles.button} onPress={()=>this.deletePost()}>
-                    <Text style={styles.textButton}>Delete post</Text>
-                </TouchableOpacity>
-                
-                 } 
+            {auth.currentUser.email === this.props.dataPost.datos.owner && (
+                    <TouchableOpacity
+                        style={styles.button}
+                        onPress={() => this.setState({ showModal: true, deleteConfirmation: true })} // Cambiar la bandera de estado al hacer clic
+                    >
+                        <Text style={styles.textButton}>Eliminar post</Text>
+                    </TouchableOpacity>
+                )}
+
+                {/* Modal para confirmar la eliminación del post */}
+                <Modal
+                    animationType="slide"
+                    transparent={true}
+                    visible={this.state.showModal && this.state.deleteConfirmation} // Asegurarse de que el modal se muestre solo si se activa la bandera de confirmación
+                    onRequestClose={() => this.setState({ showModal: false, deleteConfirmation: false })}
+                >
+                        <View style={styles.modalView}>
+                            <Text style={styles.modalText}>¿Estás seguro de que deseas eliminar este post?</Text>
+                            <View style={styles.modalButtons}>
+                                <Button title="Cancelar" onPress={() => this.setState({ showModal: false, deleteConfirmation: false })} color='lightgrey'/>
+                                <Button title="Eliminar" onPress={() => this.deletePost()} color="red" />
+                            </View>
+                        </View>
+                </Modal>
             </View>
             </View>
 
@@ -173,6 +196,27 @@ const styles = StyleSheet.create({
 
     },
 
+        // Estilos para el modal
+
+        modalView: {
+            margin: 20,
+            backgroundColor: 'white',
+            borderRadius: 10,
+            padding: 15,
+            borderWidth:2,
+            borderColor:'lightgrey',
+
+        },
+        modalText: {
+            marginBottom: 15,
+            textAlign: 'center',
+        },
+        modalButtons: {
+            flexDirection: 'row',
+            justifyContent: 'space-around',
+            width: '100%',
+            
+        },
 })
 
 

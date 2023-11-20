@@ -3,7 +3,8 @@ import {db, auth } from '../../firebase/config';
 import MyCamera from '../../components/MyCamara/MyCamara';
 import * as ImagePicker from 'expo-image-picker';
 import {TextInput, TouchableOpacity, View, Text, StyleSheet, Image} from 'react-native';
-import { ScrollView } from 'react-native-web';
+
+
 
 class PostForm extends Component {
     constructor(){
@@ -45,22 +46,25 @@ class PostForm extends Component {
         })
     }
 
-    async pickImage() {
-        try {
-          let result = await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.Images,
-            allowsEditing: true,
-            aspect: [4, 3],
-            quality: 1,
-          });
-    
-          if (!result.cancelled) {
-            this.setState({ fotoUrl: result.uri });
-          }
-        } catch (e) {
-          console.log(e);
-        }
+  // Método para abrir la galería de imágenes y seleccionar una
+  async pickImage() {
+    try {
+      let result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsEditing: true,
+        aspect: [4, 3],
+        quality: 1,
+      });
+
+      if (!result.cancelled) {
+        this.setState({ fotoUrl: result.uri });
       }
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+
 
 
     render(){
