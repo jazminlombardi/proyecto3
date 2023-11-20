@@ -9,9 +9,12 @@ import { TouchableWithoutFeedback } from 'react-native-web';
          this.state={
              email:'',
              userName:'',
-             password:''
+             password:'',
+             errorMessage: '', // Inicializar el mensaje de error en el estado
+
          }
      }
+
      componentDidMount(){
          console.log("Chequear si el usuario está loguado en firebase.");
          // Puse la funcionalidad aquí para probarla. No necesariamente debe ir en este componente.
@@ -27,7 +30,20 @@ import { TouchableWithoutFeedback } from 'react-native-web';
 
      }
 
+     
      register (email, pass, userName){
+
+        // Validación de campos obligatorios
+        if (!email || !pass ) {
+          this.setState({ errorMessage: 'Todos los campos son obligatorios' });
+          return;
+        }
+    
+        // Validación de la contraseña
+        if (pass.length < 6) {
+          this.setState({ errorMessage: 'La contraseña debe tener al menos 6 caracteres' });
+          return;
+        }
          auth.createUserWithEmailAndPassword(email, pass)
              .then( response => {
                  //Cuando firebase responde sin error
@@ -45,6 +61,7 @@ import { TouchableWithoutFeedback } from 'react-native-web';
                  .then( res => console.log(res))
 
              })
+             
              .catch( error => {
                  //Cuando Firebase responde con un error
                  console.log(error);
@@ -90,6 +107,9 @@ import { TouchableWithoutFeedback } from 'react-native-web';
                 <TouchableOpacity style={styles.button} onPress={()=>this.register(this.state.email, this.state.password, this.state.userName)}>
                     <Text style={styles.textButton}>Register</Text>    
                 </TouchableOpacity>
+                {this.state.errorMessage != '' ? (
+                <Text style={styles.errorMessage}>{this.state.errorMessage}</Text>
+                ) : null}
             </View>
             
             <View style={styles.segundaSeccion}>
