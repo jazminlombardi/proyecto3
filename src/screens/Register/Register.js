@@ -39,6 +39,7 @@ import { TouchableWithoutFeedback } from 'react-native-web';
                  db.collection('users').add({
                      owner:auth.currentUser.email,
                      userName: userName,
+                     password: pass,
                      createdAt: Date.now(),
                  })
                  .then( res => console.log(res))

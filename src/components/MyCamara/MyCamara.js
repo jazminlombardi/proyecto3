@@ -109,7 +109,7 @@ class MyCamera extends Component{
                                 type={ Camera.Constants.Type.front}
                                 ref={ metedosDeCamara => this.metedosDeCamara = metedosDeCamara}
                             />
-                            <TouchableOpacity style = { styles.button } onPress={()=>this.sacarFoto()}>
+                            <TouchableOpacity style = { styles.photobutton } onPress={()=>this.sacarFoto()}>
                                 <Text style = { styles.textButton }>Sacar Foto</Text>
                             </TouchableOpacity> 
                         </React.Fragment>
@@ -127,22 +127,16 @@ class MyCamera extends Component{
 
 const styles = StyleSheet.create({
     container:{
-        height:"60vh",
-        marginBottom: 20,
-        marginHorizontal:5,
-        padding: 15,
-        width:'100%',
 
-        
+        margin: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     cameraBody: {
-      marginTop: 20,
-      marginBottom: 10,
-      width:'100%',
-      height:"40vh",
-      borderRadius:"10px"
+        width: 500, // Ajustar el ancho del cuerpo de la cámara al 100% del contenedor
+        aspectRatio: 3/2, // Proporción de aspecto de la cámara
+      },
 
-    },
     button:{
         backgroundColor:'rgb(244, 236, 236)',
         paddingHorizontal: 10,
@@ -151,6 +145,14 @@ const styles = StyleSheet.create({
         borderRadius:4, 
         width:'100%',
 
+    },
+    photobutton:{
+        backgroundColor:'rgb(244, 236, 236)',
+        paddingHorizontal: 10,
+        paddingVertical: 6,
+        textAlign: 'center',
+        borderRadius:4, 
+        width:500,
 
     },
     textButton:{

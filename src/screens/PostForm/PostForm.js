@@ -3,6 +3,7 @@ import {db, auth } from '../../firebase/config';
 import MyCamera from '../../components/MyCamara/MyCamara';
 import * as ImagePicker from 'expo-image-picker';
 import {TextInput, TouchableOpacity, View, Text, StyleSheet, Image} from 'react-native';
+import { ScrollView } from 'react-native-web';
 
 class PostForm extends Component {
     constructor(){
@@ -107,19 +108,21 @@ class PostForm extends Component {
             </View>
             </View>
 
+
         )
     }
 }
 
 const styles = StyleSheet.create({
+
+
     pickimage:{
         backgroundColor:'rgb(244, 236, 236)',
         paddingHorizontal: 10,
         paddingVertical: 6,
         textAlign: 'center',
         borderRadius:6, 
-        marginLeft: 13,
-        marginRight: 13,
+        margin: 10,
 
     },
     image:{
@@ -130,14 +133,11 @@ const styles = StyleSheet.create({
         height: "10%",
         width:"20%",
   },
-    camara:{
-        marginBottom: 0,
-        paddingBottom: 10,
+/*     camara:{
         width:'100%',
-
         padding:0, 
         justifyContent:"center",
-    },
+    }, */
     newpost:{
         color: 'black',
         marginLeft: 15,
@@ -145,14 +145,15 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     formContainer:{
-        height:'fit-content',
-        paddingHorizontal:5,
+        flex: 1,
+        paddingHorizontal: '5%',
         marginTop: 5,
-        marginHorizontal:30,
-        padding: 25,
+        marginHorizontal: '5%',
+        padding: '3%',
         borderRadius: 6,
-        backgroundColor: 'white'
+        backgroundColor: 'white',
     },
+
     input:{
         height:40,
         backgroundColor:"white",

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { db, auth } from '../../firebase/config';
+import * as ImagePicker from 'expo-image-picker';
+
 
 class EditProfile extends Component {
     constructor(props) {
@@ -30,6 +32,25 @@ class EditProfile extends Component {
                 console.error('Error al actualizar el perfil', error);
             });
     }
+
+    async pickImage() {
+        try {
+          let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            aspect: [4, 3],
+            quality: 1,
+          });
+    
+          if (!result.canceled) {
+            this.setState({ profileImage: result.uri });
+          }
+        } catch (e) {
+          console.log(e);
+        }
+      }
+
+
     render() {
         console.log(this.state);
         return (
@@ -40,6 +61,11 @@ class EditProfile extends Component {
                 </Text>
 
                 <Text style={styles.titulo}>Edita tu perfil</Text>
+
+                <TouchableOpacity onPress={() => this.pickImage()} style={styles.pickimage}>
+                    <Text>Subir foto de perfil</Text>
+                </TouchableOpacity>
+
                 <TextInput style={styles.input}
                     keyboardType='default'
                     placeholder="Nuevo nombre de usuario"
@@ -86,6 +112,15 @@ const styles = StyleSheet.create({
         paddingTop:20,
         paddingBottom:7,
         color:"darkred"
+
+    },
+    pickimage:{
+        backgroundColor:'rgb(244, 236, 236)',
+        paddingHorizontal: 10,
+        paddingVertical: 6,
+        textAlign: 'center',
+        borderRadius:6, 
+        margin: 10,
 
     },
     firstBox:{

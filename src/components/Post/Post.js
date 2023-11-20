@@ -76,6 +76,7 @@ import React, { Component } from 'react';
              <View style={styles.unPostContainer}>
 
              <View style={styles.postheader}>
+             <Image source={{ uri: this.props.dataPost.datos.profileImage  }} style={styles.profileImage} />
              <TouchableOpacity onPress={()=>this.props.navigation.navigate('OtroPerfil', {mailUser: this.props.dataPost.datos.owner})} activeOpacity={0.7}>
                 <Text style={styles.text}>{this.props.dataPost.datos.owner}</Text>                     
              </TouchableOpacity>
@@ -146,6 +147,13 @@ import React, { Component } from 'react';
         paddingHorizontal:10,
         marginTop: 20,
         
+    },
+    profileImage: {
+        width: '30px',
+        height: '30px',
+        backgroundColor:"lightgrey",
+        borderRadius: 50,
+        alignSelf:'center'
     },
 
     button:{

@@ -46,20 +46,17 @@ import { ScrollView } from 'react-native-web';
          console.log(this.state);
          return(
              <ScrollView style = {styles.home}>
+                <TouchableOpacity style={styles.button} onPress={()=>this.logout()}>
+                     <Text style={styles.logout}>Logout</Text>
+                 </TouchableOpacity>  
                 <Image
                     style={styles.image}
                     source = {require('/assets/logo.png')}
                     resizeMode= "center"
                 />
-                 <Text style={styles.screenTitle} >HOME</Text>
-                 <TouchableOpacity style={styles.button} onPress={()=>this.logout()}>
-                     <Text style={styles.logout}>Logout</Text>
-                 </TouchableOpacity>
-
-
-            {/* Botón para ir a la pantalla de log in */}
 
                  <Text style={styles.title}> Feed</Text>
+
 
                  <FlatList
                     style={styles.lista}
@@ -86,21 +83,17 @@ import { ScrollView } from 'react-native-web';
         height:'1000px'
     },
 
-    screenTitle:{
-        fontSize: 30,
-        fontWeight: 'bold',
-        marginLeft: 20,
-        marginVertical: 0
-    },
-
     logout:{
         color: 'white'
     },
+
     title:{
         fontSize: 20,
         fontWeight: 'bold',
         marginLeft: 20,
-        marginVertical: 10
+        marginVertical: 10,
+        textAlign:'center'
+
     },
 
       button: {
